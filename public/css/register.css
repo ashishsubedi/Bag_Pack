@@ -1,0 +1,13 @@
+
+.form-body{
+    border: solid;
+    margin: 15px 10% 10% 10%;
+    background-color: darkgray;
+}   
+::placeholder{
+    color: darkblue;
+}
+label span{
+    color: darkblue;
+}
+
