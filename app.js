@@ -2,7 +2,7 @@ const port = 3000;
 
 const express = require('express');
 const path = require('path');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 
 const app = express();
 
