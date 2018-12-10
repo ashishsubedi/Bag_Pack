@@ -49,20 +49,16 @@ app.post('/registered',(req,res)=>{
                 + currentdate.getHours() + ":"  
                 + currentdate.getMinutes() + ":" 
                 + currentdate.getSeconds();
-    
-
-    con.query("INSERT INTO `users` (`First Name`, `Last Name`, `Email`, `Password`, `Date Created`, `Logged In`) VALUES (?, ?, ?, ?, ?, '0')",
-        [req.body.firstName,req.body.lastName,req.body.email,req.body.password,datetime],(err,rows,fields)=>{
+              
+    con.query("INSERT INTO `users` (`First Name`, `Last Name`, `Email`, `Password`, `Date Created`,`Date of Birth`, `Gender`, `Logged In`) VALUES (?, ?, ?, ?, ?,?,?, '0')",
+        [req.body.firstName,req.body.lastName,req.body.email,req.body.password,datetime,req.body.birth,req.body.gender],(err,rows,fields)=>{
 
             if(err) {console.log(err); return;}
             //TODO: Redirect to Login Page
-            res.send("Welcome to the site, "+ req.body.firstName);
+            res.send("Welcome to site,"+ req.body.firstName);
+        
     });
 });
-
-
-
-
 
 //listen on port and running the server
 app.listen(port,()=>{
