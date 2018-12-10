@@ -1,13 +1,30 @@
-
+html, body {margin: 0; height: 100%; overflow: auto}
+.main{
+    width: 700px;
+    margin:auto;
+   
+}   
 .form-body{
     border: solid;
-    margin: 15px 10% 10% 10%;
     background-color: darkgray;
-}   
+    margin: auto;
+    height: auto;
+    overflow: hidden;
+}
 ::placeholder{
     color: darkblue;
 }
 label span{
     color: darkblue;
+}
+form{
+    margin-left: 10%;
+    margin-bottom: 0;
+}
+.row{
+    margin-bottom: 0;
+} 
+.row button{
+    margin-bottom: 5%;
 }
 
