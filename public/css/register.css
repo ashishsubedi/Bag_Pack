@@ -1,4 +1,7 @@
-html, body {margin: 0; height: 100%; overflow: auto}
+html, body {
+    margin: 0; height: 100%; overflow: auto
+}
+
 .main{
     width: 700px;
     margin:auto;
@@ -7,7 +10,7 @@ html, body {margin: 0; height: 100%; overflow: auto}
 .form-body{
     border: solid;
     background-color: darkgray;
-    margin: auto;
+    margin: 5% auto;
     height: auto;
     overflow: hidden;
 }
