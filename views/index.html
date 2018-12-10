@@ -14,7 +14,7 @@
     <body>
         <!--Ashish's Message: Working on Registration-->
         <div>
-            <a href="#" class="register-button">Register</a>
+            <a class="register-button">Register</a>
             <div id="register-container">
 
             </div>
@@ -41,13 +41,7 @@
        <script>
            $(document).ready(function(){
                $('.register-button').on('click',function(){
-                    $('#register-container').load("/register",function(responseTxt, statusTxt, xhr){
-                        if(statusTxt == "success")
-                            alert("External content loaded successfully!");
-                        if(statusTxt == "error")
-                            alert("Error: " + xhr.status + ": " + xhr.statusText);
-                    });
-
+                    $('#register-container').load("/register");
                });
               
            });
