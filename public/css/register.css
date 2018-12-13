@@ -3,10 +3,11 @@ html, body {
 }
 
 .main{
-    width: 700px;
+    width: 1000px;
     margin:auto;
    
-}   
+} 
+
 .form-body{
     border: solid;
     background-color: darkgray;
@@ -14,20 +15,30 @@ html, body {
     height: auto;
     overflow: hidden;
 }
+
+h1{
+    text-align: left;
+    margin-bottom: 5%;
+}
+
 ::placeholder{
     color: darkblue;
 }
+
 label span{
     color: darkblue;
 }
+
 form{
-    margin-left: 10%;
-    margin-bottom: 0;
+    margin: 5%;
 }
+
 .row{
     margin-bottom: 0;
-} 
+}
+
 .row button{
     margin-bottom: 5%;
 }
+
 

@@ -12,8 +12,8 @@ const mysql = require('mysql');
 const app = express();
 
 //Serving static files
-app.use('/css-mat',express.static(__dirname+'/node_modules/materialize-css/dist/css'));
-app.use('/js-mat',express.static(__dirname+'/node_modules/materialize-css/dist/js'));
+app.use('/css-boot',express.static(__dirname+'/node_modules/bootstrap/dist/css'));
+app.use('/js-boot',express.static(__dirname+'/node_modules/bootstrap/dist/js'));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use(express.static(path.join(__dirname,'public')));
 
@@ -30,13 +30,13 @@ app.get('/', (req,res) =>{
 //GET: localhost:port/register
 
 app.get('/register', (req,res) =>{
-    res.sendFile(path.join(__dirname,"/views/register.html"));
+    res.sendFile(path.join(__dirname,"/views/register.1.html"));
 });
 
 //GET: localhost:port/login
 
 app.get('/login', (req,res) =>{
-    res.sendFile(path.join(__dirname,"/views/register.html"));
+    //SEND Login page
 });
 
 //POST: localhost:post/registered
@@ -51,8 +51,7 @@ app.post('/registered',(req,res)=>{
     //             + currentdate.getSeconds();
     var datetime = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
     var dob = formatDate(req.body.birth);
-    var c = {dc: datetime,
-    dob : dob};
+
     con.query("INSERT INTO `users` (`First Name`, `Last Name`, `Email`, `Password`, `Date Created`,`Date of Birth`, `Gender`, `Logged In`) VALUES (?, ?, ?, ?, ?,?,?, '0')",
         [req.body.firstName,req.body.lastName,req.body.email,req.body.password,datetime,dob,req.body.gender],(err,rows,fields)=>{
 
@@ -79,7 +78,8 @@ const con = mysql.createConnection({
 
 con.connect((err)=>{
     if(err) console.log(err);
-    console.log("Connected!");
+    else
+        console.log("Connected!");
 });
 
 function formatDate(date) {
