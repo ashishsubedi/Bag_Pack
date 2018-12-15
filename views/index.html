@@ -2,8 +2,8 @@
     <head>
         <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="/css/materialize.min.css"  media="screen,projection"/>
+      <!--Import booststrap.css-->
+      <link type="text/css" rel="stylesheet" href="/css-boot/bootstrap.min.css"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="css/index.css"/>
 
       
@@ -14,8 +14,12 @@
     <body>
         <!--Ashish's Message: Working on Registration-->
         <div>
-            <a href="/register">Register</a>
+            <a class="register-button" href="/register">Register</a>
+            <div id="register-container">
+
+            </div>
         </div>
+        
          <!--End Asjish's part-->
          
         <!-- Neha's Message: Working on Gmail Login -->
@@ -33,7 +37,14 @@
 
 
         <script src="/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/js-mat/materialize.min.js"></script>
+        <script type="text/javascript" src="/js-boot/bootstrap.min.js"></script>
+       <script>
+           $(document).ready(function(){
+               $('.register-button').on('click',function(){
+                    $('#register-container').load("/register");
+               });
+              
+           });
        </script>
     </body>
 </html>
