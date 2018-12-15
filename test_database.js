@@ -7,6 +7,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 const port = 3000;
+const host = "localhost";
 
 const con = mysql.createConnection({
     host:"localhost",
@@ -40,6 +41,6 @@ app.get('/users/:_id',(req,res)=>{
 
 });
 
-app.listen(port,()=>{
+app.listen(port,host,()=>{
     console.log("Server running on port "+ port);
 });
