@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 //TEST
 const mysql = require('mysql');
 
+const keys = require('./config/keys');
+
 //Initializing express function
 const app = express();
 
@@ -42,7 +44,9 @@ app.get('/signin', (req,res) =>{
     res.sendFile(path.join(__dirname,"/views/signin.html"));
 });
 app.post('/onSignIn',(req,res)=>{
-   res.onSignIn(req.body.googleUser);
+    console.log("HERE");
+    console.log(req.body);
+    onSignIn(req.body.googleUser);
 });
 app.post('/signOut',(req,res)=>{
     res.end("signed out");
@@ -99,10 +103,10 @@ app.listen(port,()=>{
 //Connecting to MySQL Database
 //TEST CODE.
 const con = mysql.createConnection({
-    host:"localhost",
-    user:'root',
-    password:"",
-    database:"test"
+    host:keys.host,
+    user: keys.username,
+    password: keys.password,
+    database: keys.database
 });
 
 con.connect((err)=>{
