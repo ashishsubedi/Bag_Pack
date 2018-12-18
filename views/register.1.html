@@ -3,12 +3,14 @@
         <title>Register</title>
         <link type="text/css" rel="stylesheet" href="/css-boot/bootstrap.min.css"  media="screen,projection"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
-        <link type="text/css"  rel="stylesheet" href="css/register.css"/>
+        <link type="text/css"  rel="stylesheet" href="/css/register.css"/>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
         
     </head>
     <body>
         <div class="background">
-            <img src="images/travel.jpg" alt="Night Sky" s/>
+            <img src="/images/travel.jpg" alt="Night Sky" s/>
     
         </div>
         <div class="main">
@@ -16,25 +18,28 @@
 
                 <div class="form-body row shadow-lg">
                 
-                    <form class="col">
+                    <form class="col" action="/users/register" method="POST">
                             <h1>Register Here!</h1>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    <input type="text" class="form-control" placeholder="First name">
+                                    <input type="text" class="form-control" placeholder="First name"  name="firstName" id="firstName" class="validate">
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control" placeholder="Last name">
+                                    <input type="text" class="form-control" placeholder="Last name"  name="lastName" id="lastName"class="validate">
                                 </div>
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <input type="email" class="form-control" id="email" placeholder="Enter email">
+                            <input type="email" class="form-control" placeholder="Enter email" name="email" id="email"class="validate">
                         </div>
                         <div class="form-group">
                             
-                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                        </div>
+                        <div class="form-group"> <!-- Date input -->
+                            <input class="form-control" id="birth" name="birth" placeholder="Date of Birth (YYYY-MM-DD)" type="date"/>
                         </div>
                         <fieldset class="form-group">
                             <div class="row">
@@ -72,10 +77,17 @@
         <script type="text/javascript" src="/js-boot/bootstrap.min.js"></script>
         </script>
         <script>
-         $(document).ready(function(){
-                
-                $('.datepicker').datepicker();
-            });</script>
+            $(document).ready(function(){
+                var container=$('.middle');
+                var options={
+                format: 'yyyy-mm-dd',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+                };
+                date_input.datepicker(options);
+            })
+        </script>
             
     </body>
 </html>
