@@ -1,0 +1,376 @@
+<html>
+    <head>
+        <title>NepVenture</title>
+        <link rel="stylesheet" href="profile_css.css">
+        <link rel="stylesheet" href="">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--linking bootstrap css-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <!--linking bootstrap js-->
+     
+
+    </head>
+    
+   
+    
+        
+    
+    <body style="background-color:white;">
+        <header class="container" style="margin-left: 0px; background-color: #2B2B2B; width:100%; color:white;">
+			<div class="row text-center">  
+                <h1 class="col-md-4"><a href="/" style="text-decoration: none; color:white;">NepVenture</a></h1>
+				<nav class="col-md-8 ">
+                    
+                    
+                    
+                    <div class="container" style="background-color:#2B2B2B; margin-left: 0px;  width:100%; ">
+    <div class="row">
+        <div class="col-md-4"></div>
+        
+        <div class="col-md-3" style="text-align: center;">
+            <h2 style="color:black"> <button type="button" class="btn " data-toggle="modal" data-target="#myModal2" style="background-color: #2B2B2B; color:white; text-align: center;"><h3>Earn With Us</h3></button></h2>
+        </div>
+        <div class="col-md-3" style="text-align: center;">
+        
+       
+        <!-- Trigger the modal with a button -->
+                    <h2 style="color:black"> <button type="button" class="btn " data-toggle="modal" data-target="#myModal" style="background-color: #2B2B2B; color:white;"><h3>Add New Post</h3></button></h2>
+                            
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>      
+            
+<div class="modal fade" id="myModal2" role="dialog" >
+    <div class="modal-dialog" style="width:1000px;">
+        <div class="modal-content" style="color:black;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Earn With Us</h4>
+            </div>
+                
+                
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8" style="text-align:center;">
+                            <h3>Your Point: <%= points %></h3>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-md-4" style="text-align:left;">
+                            <p>Hotel Pass</p>
+                            <img src="/views/img/sky.jpg" style="border-radius:5%; width:100px; height:100px;">
+                            <p>Cost:123 points</p>
+                        </div>
+                        <div class="col-md-4" style="text-align:left;">
+                            <p>Bus Pass</p>
+                            <img src="/views/img/sky.jpg" style="border-radius:5%; width:100px; height:100px;">
+                            <p>Cost:123 points</p>
+                            <p></p>
+                        </div>
+                        <div class="col-md-4" style="text-align:left;">
+                            <p>Sleeping Bag</p>
+                            <img src="/views/img/sky.jpg" style="border-radius:5%; width:100px; height:100px;">
+                            <p>Cost:123 points</p>
+                        </div>
+                    </div>
+                    
+                    <hr style="color: darkgrey">
+                    
+                    
+                    
+                    <div class="row">
+                        <div class="col-md-4" style="text-align:left;">
+                            <p>Hotel Pass</p>
+                            <img src="/views/img/sky.jpg" style="border-radius:5%; width:100px; height:100px;">
+                            <p>Cost:123 points</p>
+                        </div>
+                        <div class="col-md-4" style="text-align:left;">
+                            <p>Bus Pass</p>
+                            <img src="/views/img/sky.jpg" style="border-radius:5%; width:100px; height:100px;">
+                            <p>Cost:123 points</p>
+                        </div>
+                        <div class="col-md-4" style="text-align:left;">
+                            <p>Sleeping Bag</p>
+                            <img src="/views/img/sky.jpg" style="border-radius:5%; width:100px; height:100px;">
+                            <p>Cost:123 points</p>
+                        </div>
+                    </div>
+                    <hr style="color: darkgrey;">
+                    
+                    <br>
+                    <br>
+                    <br>
+                    
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            <p><h3>Your Level: <%= level %></h3></p>
+                            <p>Earn 120 points to reach next level. 3 more levels and get chance to become a professional guide and earn money</p>
+                            <p><h5 style="color:red;">You can do it </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            <p><h3>Affilliate your Friend</h3></p>
+                            <p>Bring the traffic our way and Earn more POINTS. Share your unique Address</p>
+                            <p><h5 style="color:red;">https://localguide.com/2345654</h5>
+                            </p>
+                        </div>
+                    </div>
+<!---container-->
+                </div>
+<!--modal body-->
+            </div>
+<!--modal content-->
+
+        </div>
+<!--modal dialogue-->
+    </div>
+<!--modal fade-->
+</div>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+  <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+    
+      <!-- Modal content-->
+            <div class="modal-content" style="color:black;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Fill up to add new Post</h4>
+                </div>
+                <div class="modal-body">
+                <form action="/profile/post" method="POST" enctype="multipart/form-data"> 
+                    <div class="form-group">
+                        <label for="destination">Name of the place:</label><input type="text" class="form-control" id="destination" name="destination"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Approx-Budget:</label><input type="number" class="form-control" id="budget" name="budget"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="photos">Image:</label><input id="photos"  name="photos" type="file" class="file" data-show-preview="false" multiple/>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea style="height: 400px; width:100%; " name = "description" id="description"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                            <input type="submit" class="btn btn-default" value="Submit"/>
+                    </div>
+                </form>
+            </div>
+                   
+      </div>
+      </div>
+    </div>
+    </div>  
+               
+
+                    
+                    <h3><p><a href="" style="text-decoration: none; color:white;"></a></p></h3>
+                    <h3><p><a href="" style="text-decoration: none; color:white;"></a></p></h3>				
+				</nav>
+			</div>
+        </header>
+    
+               
+
+        
+            
+       <!--Section for profile picture-->
+        
+<section class="jumbotron" style="  display: flex;
+                              align-items: center;
+                              background-color:darkgrey; 
+                              background-size: cover;
+                              color: black;
+                              height: 450px;
+                              text-shadow: 0.25px 0.25px 0.25px ;
+                                width:100%;">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <img src="<%= profilePic %>" class="profilePic" style="width: 200px; height:200px; border-radius: 50%">
+                        <p style="text-align: center;"><%= fullName%></p><br>
+                        <p>
+                            <!--ALIGN IT-->
+                                <form action="/profile/upload" method="POST" enctype="multipart/form-data">
+                                    <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                    <div class="form-group" style="align-self: center;">
+                                    <input type="file" name="pic" accept="image/*">
+                                    </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                    <div class="form-group" style="align-self: center;">
+                                    <input type="submit" value="Change">
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                            <p style="text-align: center;">Address:<%= address%></p><br>
+
+                                    </div>
+                                    </div>
+                                </form> 
+
+                            </p>
+                        
+                    </div>
+                    
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3>Points</h3>
+                                <h4><%= points %></h4>
+                            </div>
+                            <div class="col-md-6">
+                                <h3>Level</h3>
+                                <h4><%= level %></h4>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <p style="font-family: fantasy; text-align:left;">
+                              " <%= about %>""
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>  
+                
+ 
+    
+    
+  <!--Modal 2-->
+    
+    
+        
+        
+        
+          <!-- Page Content -->
+    
+        <% posts.forEach(function(post){ %>
+            <div class="container">
+            <div class="row">
+
+                    <!-- Post Content Column -->
+                    <div class="col-lg-8">
+            
+                      <!-- Title -->
+                      <h1 class="mt-4"><a href="/profile/post/<%= post._id %>"> <%= post.destination %></a></h1>
+            
+                      <hr>
+            
+                      <!-- Date/Time -->
+                      <p>Posted on <%= post.createdAt %></p>
+            
+                      <hr>
+            
+                      <!-- Preview Image -->
+                      <img class="img-fluid rounded" src="/<%= post.photos[0] %>" alt="main" style="width:900px; height: 450px;">
+            
+                  
+            
+                      <!-- Post Content -->
+                        <br><b>
+                                 <p>UpVote: <%= post.upvotes %></p>
+                               
+                                 <p>Total Budget: <%= post.budget %>/-</p></b>
+               
+            
+                        </div>
+                      </div>
+            
+                    </div>
+            
+               
+            
+                  </div>
+                  
+
+       <% }); %> 
+      
+      <!-- /.row -->
+  
+    
+        <div class="container">
+                <hr style="color: #2B2B2B ; border-bottom: 20px;">
+        </div>
+
+        
+        <footer  style="margin-left: 0px; background-color: #2B2B2B; width:100%;">
+            <div class="container">
+			<div class="row">
+				<p class="col-sm-4" style="color:white;">&copy; 2018 NepVenture</p>
+				<ul class="col-sm-8 ">
+					<li class="col-sm-1">
+						<img src="/views/img/instagram.svg">
+					</li>
+					<li class="col-sm-1">
+						<img src="/views/img/facebook.svg">
+					</li>
+					<li class="col-sm-1">
+						<img src="/views/img/reddit.svg">
+					</li>
+					<li class="col-sm-1">
+						<img src="/views/img/Twitter.svg">
+					</li>
+				</ul>
+			</div>
+            </div>
+        </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script>
+        url = window.location.pathname + '/';
+        fetch(url,{
+            method: 'POST'
+        })
+        .then((response)=>{
+            return response.json();
+        })
+        .then(data=>{
+    
+           
+           //$(".profilePic").attr('src',"\\"+ data);
+        })
+        .catch(err=>{throw err});
+        </script>
+                   
+
+        
+    </body>
+</html>
