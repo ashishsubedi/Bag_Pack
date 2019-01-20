@@ -36,13 +36,13 @@ module.exports = function (passport) {
                 }
 
                 if (!rows.length) {
-                    return done(null, false, req.flash('loginMessage', 'No user found.'));
+                    return done(null, false,req.flash('error_msg',  'No user found.'));
 
                 }
 
                 // if the user is found but the password is wrong
                 if (!(bcrypt.validPassword(password, rows[0].Password)))
-                    return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+                    return done(null, false,req.flash('error_msg', 'Wrong password.')); // create the loginMessage and save it to session as flashdata
 
 
                 // all is well, return successful user

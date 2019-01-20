@@ -5,13 +5,10 @@
   <title>Homepage</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-    crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="/css-boot/bootstrap.min.css" media="screen,projection" />
+
   <link rel="stylesheet" href="/views/Homepage.css">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP"
-    crossorigin="anonymous"></script>
+
 </head>
 
 <body style=" background-color: #cefff5;">
@@ -36,7 +33,7 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
       <li>
-        <a href="#" class="btn btn-secondary btn-md active" role="button" aria-pressed="true">Login</a>
+        <a href="/users/login" class="btn btn-secondary btn-md active" role="button" aria-pressed="true">Login</a>
       </li>
       <!--
         <li>
@@ -79,11 +76,11 @@
           <h1>Post of the Week</h1>
           <ul>
             <div class="col-md-4 text-left img-left">
-              <img src="sp1.PNG" style="width:30px; height:30px; border-radius: 50%;">
+              <img src="images/sp1.png" style="width:30px; height:30px; border-radius: 50%;">
               <a href="#">Rashika Karki</a>
             </div>
           </ul>
-          <img src="p1.jpg" class="postOfTheWeekImage" alt="postOfTheWeek" style="width: 100%; height:460px;">
+          <img src="images/p1.jpg" class="postOfTheWeekImage" alt="postOfTheWeek" style="width: 100%; height:460px;">
           <div class="caption">
             <p class="postOfTheWeekDesc">Shivapuri</p>
           </div>
@@ -112,7 +109,7 @@
           <div class="well">
             <div class="row">
               <div class="col-md-6" style="margin-top: 10px;">
-                <img src="sp1.PNG" style="width:100px; height:100px; border-radius: 50%;">
+                <img src="images/sp1.png" style="width:100px; height:100px; border-radius: 50%;">
               </div>
               <div class="col-md-2">
                 <p>
@@ -122,7 +119,7 @@
             </div>
             <div class="row">
               <div class="col-md-6" style="margin-top: 10px;">
-                <img src="sp2.jpg" style="width:100px; height:100px; border-radius: 50%;">
+                <img src="images/sp2.jpg" style="width:100px; height:100px; border-radius: 50%;">
               </div>
               <div class="col-md-2">
                 <p>
@@ -159,7 +156,7 @@
     </div>
   </div>
 
-
+<!--@TODO: GENERATE DYNAMIC CONTENT FROM DATABASE-->
   <div class="container">
     <div class="row">
       <div class="col-md-2 "></div>
@@ -167,11 +164,11 @@
         <div class="thumbnail">
           <ul>
             <div class=" text-left img-left" style=" margin-top:10px;">
-              <img src="sp2.jpg" style="width:30px; height:30px; border-radius: 50%;">
+              <img src="images/sp2.jpg" style="width:30px; height:30px; border-radius: 50%;">
               <a href="#">Abhishek Pathak</a>
             </div>
           </ul>
-          <img src="p2.jpg" class="postOfTheWeekImage" alt="postOfTheWeek" style="width: 100%; height:460px;">
+          <img src="images/p2.jpg" class="postOfTheWeekImage" alt="postOfTheWeek" style="width: 100%; height:460px;">
           <div class="caption">
             <p class="postOfTheWeekDesc">Palpa</p>
           </div>
@@ -207,6 +204,9 @@
       </div>
     </div>
   </footer>
+
+
+  <script type="text/javascript" src="/js-boot/bootstrap.min.js"></script>
 
 
 </body>
