@@ -1,4 +1,5 @@
 const port = process.env.PORT||3000;
+const http = require('http');
 //const host = "localhost";
 
 //Importing/Including required module 
@@ -31,6 +32,8 @@ con.connect((err)=>{
 });
 //Initializing express function
 const app = express();
+const server = http.createServer(app);
+
 
 
 app.use(helmet());
@@ -70,7 +73,7 @@ app.use('/users',userRoute);
 
 
 //listen on port and running the server
-app.listen(port,()=>{
+server.listen(port,()=>{
     console.log(`Server running at port ${port}`);
 });
 
