@@ -21,6 +21,7 @@ const con = require('./config/connection');
 
 const indexRoute = require('./routes/index');
 const userRoute = require('./routes/users');
+const profileRoute = require('./routes/profile');
 
 
 
@@ -68,6 +69,7 @@ require('./config/passport')(passport);
 
 app.use('/',indexRoute);
 app.use('/users',userRoute);
+app.use('/profile',profileRoute);
 
 
 

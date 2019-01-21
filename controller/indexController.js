@@ -6,7 +6,10 @@ indexController.get = (req, res) => {
 };
 
 indexController.getHome = (req, res) => {
-    res.status(200).end("HOME");
+    res.render('homepage',{
+        user: req.user
+    });
+    
     //res.sendFile("views/home.html",{root:'./'});
 };
 

@@ -26,5 +26,6 @@ loginController.logout = (req, res) => {
         console.log("User Logged Out");
     });
     req.logOut();
+    res.redirect('/');
 };
 module.exports = loginController;

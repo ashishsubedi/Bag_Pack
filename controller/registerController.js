@@ -2,6 +2,7 @@ const con = require('../config/connection');
 
 const registerController = {};
 const bcrypt = require('../config/bcrypt');
+const formatDate = require('../config/formateDate');
 
 registerController.get = (req, res) => {
     //res.sendFile("views/register.html", { root: './' });
@@ -37,7 +38,7 @@ registerController.post = (req, res, next) => {
     } else {
 
         var datetime = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-        var dob = formatDate(req.body.birth);
+        var dob = formatDate.formatDate(req.body.birth);
         let password = bcrypt.generateHash(req.body.password);
         con.query("SELECT * FROM `users` WHERE `Email` = ?", req.body.email, function (err, rows) {
             if (err)
@@ -68,17 +69,7 @@ registerController.post = (req, res, next) => {
 
 };
 
-function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
 
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-
-    return [year, month, day].join('-');
-}
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
