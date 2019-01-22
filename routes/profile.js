@@ -45,7 +45,8 @@ router.get('/', auth.ensureAuthenticated, profileController.getProfile);
 router.get('/:userId', auth.ensureAuthenticated, profileController.getUserProfile);
 
 //Handles Post
-router.get('/post', auth.ensureAuthenticated, postController.getAllPost);
+
+router.get('/post', postController.getAllPost);
 router.post('/post', auth.ensureAuthenticated, upload.any('photos',10), postController.addPost);
 
 router.get('/post/:id',postController.getPostById);

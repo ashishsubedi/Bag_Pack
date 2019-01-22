@@ -1,6 +1,7 @@
 //const {mongoose} = require('../../config/mongoose-connect');
 const connection = require('../config/connection');
-const formatDate = require('../config/formateDate');
+
+var moment = require('moment');
 
 
 const _ = require('lodash');
@@ -15,93 +16,71 @@ postController.addPost = (req, res, next) => {
     _.forEach(req.files, (val) => {
         photosArray.push(val.path);
     });
-   
+
     var query = "INSERT INTO `post` SET ?";
     var values = {
-        userId : req.user.id,
+        userId: req.user.id,
         content: req.body.content,
-        dateCreated: formatDate.formatDate(Date.now())
+        dateCreated: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
     }
-    connection.query(query, values, (err,result,fields) => {
+    console.log(values);
+    connection.query(query, values, (err, result, fields) => {
+        if (err) throw err;
 
         console.log("POST ADDED SUCCESSFULLY!!");
-        console.log(result);
+
         query = "SELECT * FROM `post` WHERE id = ? ";
-        connection.query(query, result.insertId, (err,row)=>{
+        connection.query(query, result.insertId, (err, row) => {
+            if (err) throw err;
+
             //TODO: GET USER DATA AND DISPLAY POST PAGE
             console.log(row);
+            query =
+                "select post.*, users.`First Name`, users.`Last Name` from post inner join users on post.userId=users.id AND post.userId = ? order by post.dateCreated desc;";
+
+            connection.query(query, [row[0].userId], (err, rows) => {
+                if (err) throw err;
+
+                res.status(200).json(rows[0]);
+            })
+
         })
-       // let postId = rows[0]
-       
 
     });
-
-    /* 
-        LocalUser.findById(req.user._id,(err,user)=>{
-            if(err) next(err);
-    
-            if(user){ 
-                Post.create({
-                    destination : req.body.destination,
-                    photos : photosArray,
-                    description : req.body.description,
-                    budget : req.body.budget
-                },(err,post)=>{
-                    user.posts.push(
-                        post._id
-                    );
-                     
-                    user.save(function(err){
-                        if (err) throw err;
-                        res.redirect('/profile')
-                    })
-                })
-                
-    
-            }
-        }); */
-
 };
 
 postController.getAllPost = (req, res, next) => {
-    res.render("post");
+    
+    console.log("BLAH BLAh");
+    var query = "SELECT * FROM `post` ORDER BY `dateCreated` desc";
+    connection.query(query,(err, rows)=>{
+        if (err) throw err;
+        
+        console.log(rows);
+    })
+
+    //res.render("post");
 };
 
 postController.getPostById = (req, res, next) => {
 
-    /*  LocalUser.findById(req.user._id)
-     .populate('posts')
-     .exec((err,user)=>{
-         if(err)
-             throw err;
-         
-         _.forEach(user.posts,val =>{
-       
-             if(val._id == req.params.id ){
-                 res.render("post",{
-                     post : val
-                 });
-             }
-             
-         });
-         const error = new Error("Post Not Found");
-         error.status = 404;
-         next(error);
-     }); */
+    var query = "SELECT * FROM `post` WHERE id = ?";
+    connection.query(query, [req.params.id], (err, result, fields) => {
 
-    /* console.log(req.params.id);
-    Post.findOne({_id :req.params.id})
-    .exec((err,post)=>{
-        if(err) throw err;
-        res.render("post",{
-            post : post
-        });
+        if (err) throw err;
 
-    }); */
+        query =
+            "select post.*, users.`First Name`, users.`Last Name` from post inner join users on post.userId=users.id AND post.userId = ? order by post.dateCreated desc;";
+
+        connection.query(query, [result[0].userId], (err, rows) => {
+            if (err) throw err;
+
+            rows[0].dateCreated = moment(result.dateCreated).format("YYYY-MM-DD HH:mm:ss");
+            res.status(200).json(rows[0]);
+        })
 
 
-
-
+    });
 };
 
 module.exports = postController;
