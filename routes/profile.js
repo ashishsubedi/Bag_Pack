@@ -39,8 +39,9 @@ const upload = multer({
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
+router.get('/', auth.ensureAuthenticated, profileController.getProfile); //Handled
 
-//Handles Post
+//Handles Post (All handled)
 
 router.get("/post", postController.getAllPosts);
 
@@ -48,18 +49,17 @@ router.post('/post', auth.ensureAuthenticated, upload.array('photos',10),postCon
 
 router.get('/post/:id', postController.getPostById);
 
-//Handles Index
-
-router.get('/', auth.ensureAuthenticated, profileController.getProfile);
-
-router.get('/id/:userId', auth.ensureAuthenticated, profileController.getUserProfile);
+//Handles Index (Remaining)
 
 
-router.post('/upload', auth.ensureAuthenticated, upload.single('avatar'), profileController.uploadProfilePic)
+router.get('/id/:userId', auth.ensureAuthenticated, profileController.getUserProfile); //Handled
+
+
+router.post('/upload', auth.ensureAuthenticated, upload.single('avatar'), profileController.uploadProfilePic) //Handled
 
 router.get('/logout', function (req, res) {
 	req.logout();
 	res.redirect('/');
-});
+});  //Handled
 
 module.exports = router;

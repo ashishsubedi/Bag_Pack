@@ -2,7 +2,8 @@ const con = require('../config/connection');
 
 const registerController = {};
 const bcrypt = require('../config/bcrypt');
-const formatDate = require('../config/formateDate');
+var moment = require('moment');
+
 
 registerController.get = (req, res) => {
     //res.sendFile("views/register.html", { root: './' });
@@ -38,7 +39,7 @@ registerController.post = (req, res, next) => {
     } else {
 
         var datetime = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-        var dob = formatDate.formatDate(req.body.birth);
+        var dob = moment(req.body.birth).format("YYYY-MM-DD");
         let password = bcrypt.generateHash(req.body.password);
         con.query("SELECT * FROM `users` WHERE `Email` = ?", req.body.email, function (err, rows) {
             if (err)
@@ -55,7 +56,8 @@ registerController.post = (req, res, next) => {
                 con.query("INSERT INTO `users` (`First Name`, `Last Name`, `Email`, `Password`, `Date Created`,`Date of Birth`, `Gender`, `Logged In`,`isAdmin`) VALUES (?, ?, ?, ?, ?,?,?, '0','0')",
                     [req.body.firstName, req.body.lastName, req.body.email, password, datetime, dob, req.body.gender], (err, rows, fields) => {
 
-                        if (err) { console.log(err); return; }
+                        if (err) throw err;
+
                         //TODO: Redirect to Login Page
                         req.flash('success_message', 'User successfully Registered.');
                         res.redirect("/users/login");

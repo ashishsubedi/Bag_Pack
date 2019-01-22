@@ -14,6 +14,8 @@ loginController.get = (req, res) => {
 loginController.post = (req, res) => {
     //Login User
     connection.query("UPDATE `users` SET `Logged In` = 1 WHERE `id`= ?", req.user.id, (err, rows) => {
+        if(err) throw err;
+
         req.flash('success_msg', 'Successfully Logged In');
         console.log("User Logged In");
     });
@@ -22,6 +24,8 @@ loginController.post = (req, res) => {
 };
 loginController.logout = (req, res) => {
     connection.query("UPDATE `users` SET `Logged In` = 0 WHERE `id`= ?", req.user.id, (err, rows) => {
+        if(err) throw err;
+
         req.flash('success_msg', 'Successfully Logged In');
         console.log("User Logged Out");
     });
