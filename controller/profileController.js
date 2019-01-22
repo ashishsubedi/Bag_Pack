@@ -5,9 +5,6 @@ const _ = require('lodash');
 
 const profileController = {};
 
-profileController.postLocalUser = (req,res,next)=>{
-    res.json(req.user);    
-};
 
 profileController.getProfile = (req,res,next)=>{
     // User.findOne wont fire unless data is sent back
@@ -15,10 +12,41 @@ profileController.getProfile = (req,res,next)=>{
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        connection.query("SELECT * FROM `users` WHERE `Email` = ?",req.user.email,(err,rows)=>{
+        connection.query("SELECT * FROM `users` WHERE `Email` = ?",[req.user.email],(err,rows)=>{
+            /* 
+                Profile
+                    Picture,
+                    Name,
+                    Address,
+                    followers,
+                    Total post,
+                    Points,
+                A Post contains
+                    Date,
+                    Thumbnail,
+                    To,
+                    From,
+                    Budget,
+                    Duration(Time ),
+                    Level of difficulty,
+                    Best time to travel,
+                    Pictures,
+                Post Page:
+                    Name, 
+                    Pp,
+                    Created Date,
+                    Post:
+                        Previous Values,
+                        Pictures,
+                        Blog Content
 
+
+
+
+            */
+            console.log(rows);
         });
-
+ 
        /*  LocalUser.findOne({ email : req.user.email })
         .populate('posts')
         .exec(function(err, user) {

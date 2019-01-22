@@ -12,16 +12,24 @@ const postController = {};
 
 postController.addPost = (req, res, next) => {
 
-    var photosArray = [];
+    var photosPath = '';
     _.forEach(req.files, (val) => {
-        photosArray.push(val.path);
+        photosPath += val.path + ',';
+       
     });
 
     var query = "INSERT INTO `post` SET ?";
     var values = {
         userId: req.user.id,
         content: req.body.content,
-        dateCreated: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
+        dateCreated: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+        to: req.body.to,
+        from: req.body.from,
+        budget: req.body.budget,
+        duration: req.body.duration,
+        bestTime: req.body.bestTime,
+        pictures: photosPath,
+        levelOfDifficulty: req.body.levelOfDifficulty,
     }
     console.log(values);
     connection.query(query, values, (err, result, fields) => {
@@ -36,11 +44,11 @@ postController.addPost = (req, res, next) => {
             //TODO: GET USER DATA AND DISPLAY POST PAGE
             console.log(row);
             query =
-                "select post.*, users.`First Name`, users.`Last Name` from post inner join users on post.userId=users.id AND post.userId = ? order by post.dateCreated desc;";
+                "select post.*, users.`First Name`, users.`Last Name`, users.`profilePicture` from post inner join users on post.userId=users.id AND post.userId = ? order by post.dateCreated desc;";
 
             connection.query(query, [row[0].userId], (err, rows) => {
                 if (err) throw err;
-
+                console.log(rows[0]);
                 res.status(200).json(rows[0]);
             })
 
@@ -49,18 +57,15 @@ postController.addPost = (req, res, next) => {
     });
 };
 
-postController.getAllPost = (req, res, next) => {
-    
-    console.log("BLAH BLAh");
+postController.getAllPosts = (req, res, next) => {
     var query = "SELECT * FROM `post` ORDER BY `dateCreated` desc";
-    connection.query(query,(err, rows)=>{
+    connection.query(query, (err, rows) => {
         if (err) throw err;
-        
+        res.json({ message: "works" });
         console.log(rows);
-    })
+    });
+}
 
-    //res.render("post");
-};
 
 postController.getPostById = (req, res, next) => {
 
@@ -70,7 +75,7 @@ postController.getPostById = (req, res, next) => {
         if (err) throw err;
 
         query =
-            "select post.*, users.`First Name`, users.`Last Name` from post inner join users on post.userId=users.id AND post.userId = ? order by post.dateCreated desc;";
+            "select post.*, users.`First Name`, users.`Last Name`, users.`profilePicture`  from post inner join users on post.userId=users.id AND post.userId = ? order by post.dateCreated desc;";
 
         connection.query(query, [result[0].userId], (err, rows) => {
             if (err) throw err;

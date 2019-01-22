@@ -9,8 +9,9 @@ const indexController = require('../controller/indexController');
 
 
 
-router.get('/',auth.ensureGuest,indexController.get);
+router.get('/',indexController.get);
 
 router.get('/home',auth.ensureAuthenticated,indexController.getHome);
 
-module.exports = router;
+
+module.exports = router;    

@@ -1,0 +1,36 @@
+
+Profile
+    Picture,
+    Name,
+    Address,
+    followers,
+    Total post,
+    Points,
+
+
+A Post contains
+    Date,
+    Thumbnail,
+    To,
+    From,
+    Budget,
+    Duration(Time ),
+    Level of difficulty,
+    Best time to travel,
+    Pictures,
+
+
+Post Page:
+    Name, 
+    Pp,
+    Created Date,
+    Post:
+        Previous Values,
+        Pictures,
+        Blog Content,
+        Upvotes,
+    Comments:
+        
+
+
+
