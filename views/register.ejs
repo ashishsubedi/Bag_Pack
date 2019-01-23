@@ -19,34 +19,34 @@
         <div class="middle">
 
             <div class="form-body row shadow-lg">
-               
-                <div>
-                        <% if (success_msg != '') { %>
 
-                            <div class="alert alert-success" role="alert">
-                                <% success_msg %>
-                            </div>
-            
-                            <% } %>
-                            <% if (error_msg != '') { %>
-            
-            
-                            <div class="alert alert-error" role="alert">
-                                <%= error_msg %>
-                            </div>
-            
-                            <% } %>
-                            <% if (errors != '') { %>
-                            <% errors.forEach(error => { %>
-                            <div class="alert alert-error" role="alert">
-                                <%= error %>
-                            </div>
-                           
-                            <% }); %>
-                            <% } %>
+                <div>
+                    <% if (success_msg != '') { %>
+
+                    <div class="alert alert-success" role="alert">
+                        <% success_msg %>
+                    </div>
+
+                    <% } %>
+                    <% if (error_msg != '') { %>
+
+
+                    <div class="alert alert-error" role="alert">
+                        <%= error_msg %>
+                    </div>
+
+                    <% } %>
+                    <% if (errors != '') { %>
+                    <% errors.forEach(error => { %>
+                    <div class="alert alert-error" role="alert">
+                        <%= error %>
+                    </div>
+
+                    <% }); %>
+                    <% } %>
                 </div>
                 <form class="col" action="/users/register" method="POST">
-                   
+
                     <h1>Register Here!</h1>
                     <div class="form-group">
                         <div class="row">
@@ -71,16 +71,21 @@
                             required>
                     </div>
                     <div class="form-group">
-                  
-                        <input class="form-control" id="address" name="address" placeholder="Address"
-                            type="text" required />
+
+                        <input class="form-control" id="address" name="address" placeholder="Address" type="text"
+                            required />
                     </div>
                     <div class="form-group">
                         <!-- Date input -->
                         <input class="form-control" id="birth" name="birth" placeholder="Date of Birth (YYYY-MM-DD)"
                             type="date" required />
                     </div>
-                    
+                    <div class="form-group">
+
+                        <input class="form-control" id="about" name="about" placeholder="About Yourself! (250 Characters)"
+                            type="text" required />
+                    </div>
+
                     <fieldset class="form-group">
                         <div class="row">
                             <legend class="col-form-label col-sm-2 pt-0">Gender</legend>

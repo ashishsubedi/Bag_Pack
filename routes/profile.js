@@ -37,6 +37,7 @@ const upload = multer({
 
 
 router.use(express.json());
+
 router.use(express.urlencoded({ extended: true }));
 
 router.get('/', auth.ensureAuthenticated, profileController.getProfile); //Handled
@@ -48,6 +49,23 @@ router.get("/post", postController.getAllPosts);
 router.post('/post', auth.ensureAuthenticated, upload.array('photos',10),postController.addPost);
 
 router.get('/post/:id', postController.getPostById);
+
+router.post('/post/upvote/:postId',auth.ensureAuthenticated,postController.upvote);
+
+router.post('/post/comment/:postId', auth.ensureAuthenticated, postController.addComment);
+
+//PUT: Update Story
+router.put('/:id', auth.ensureAuthenticated, postController.editPost);
+
+//DELETE: Story
+router.delete('/:id', auth.ensureAuthenticated, (req, res) => {
+    Story.remove({
+        _id: req.params.id
+    })
+        .then(() => {
+            res.redirect('/dashboard');
+        })
+});
 
 //Handles Index (Remaining)
 
