@@ -12,6 +12,7 @@ const session = require('express-session');
 const flash    = require('connect-flash');
 const passport = require('passport');
 const ejs = require('ejs');
+const methodOverride = require('method-override');
 
 
 //TEST
@@ -43,6 +44,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.set('view engine', 'ejs');
+app.use(methodOverride('_method'));
 //Serving static files
 app.use('/css-boot',express.static(__dirname+'/node_modules/bootstrap/dist/css'));
 app.use('/js-boot',express.static(__dirname+'/node_modules/bootstrap/dist/js'));

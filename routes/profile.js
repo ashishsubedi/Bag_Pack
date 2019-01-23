@@ -55,17 +55,10 @@ router.post('/post/upvote/:postId',auth.ensureAuthenticated,postController.upvot
 router.post('/post/comment/:postId', auth.ensureAuthenticated, postController.addComment);
 
 //PUT: Update Story
-router.put('/:id', auth.ensureAuthenticated, postController.editPost);
+router.put('/post/edit/:postId', auth.ensureAuthenticated, postController.editPost);
 
 //DELETE: Story
-router.delete('/:id', auth.ensureAuthenticated, (req, res) => {
-    Story.remove({
-        _id: req.params.id
-    })
-        .then(() => {
-            res.redirect('/dashboard');
-        })
-});
+router.delete('/post/:postId', auth.ensureAuthenticated, postController.deletePost);
 
 //Handles Index (Remaining)
 

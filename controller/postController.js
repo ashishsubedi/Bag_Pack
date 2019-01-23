@@ -61,6 +61,50 @@ postController.addPost = (req, res, next) => {
 };
 
 postController.editPost = (req, res, next) => {
+    var photosPath = '';
+    _.forEach(req.files, (val) => {
+        photosPath += val.path + ',';
+    });
+    console.log(req.params.postId);
+
+
+    var query = "UPDATE `post` SET ? WHERE id = ?";
+    var values = {
+        content: req.body.content,
+        to: req.body.to,
+        from: req.body.from,
+        budget: req.body.budget,
+        duration: req.body.duration,
+        bestTime: req.body.bestTime,
+        pictures: photosPath,
+        levelOfDifficulty: req.body.levelOfDifficulty,
+    }
+    console.log(values);
+    connection.query(query, [values, req.params.postId], (err, result, fields) => {
+        if (err) throw err;
+
+        console.log("POST EDITED SUCCESSFULLY!!");
+        console.log(result);
+        query = "SELECT * from post Where id = ?;";
+        console.log(req.params.postId);
+        connection.query(query, [req.params.postId], (err, row) => {
+            if (err) throw err;
+
+            //TODO: GET USER DATA AND DISPLAY POST PAGE
+            console.log(row);
+
+            query =
+                "select post.*, users.`First Name`, users.`Last Name`, users.`profilePicture` from post inner join users on post.userId=users.id AND post.userId = ? order by post.dateCreated desc;";
+
+            connection.query(query, [row[0].userId], (err, rows) => {
+                if (err) throw err;
+                console.log(rows[0]);
+                res.status(200).json(rows[0]);
+            })
+
+        })
+
+    });
     /*  Story.findOne({
          _id: req.params.id
      })
@@ -88,6 +132,15 @@ postController.editPost = (req, res, next) => {
  
          })
          .catch(err => { throw err }); */
+}
+
+postController.deletePost = (req, res, next) => {
+
+    connection.query("DELETE FROM `post` WHERE id = ?;",[req.params.postId],(err,result)=>{
+        if(err) throw err;
+        
+        res.redirect("/profile");
+    });
 }
 
 postController.getAllPosts = (req, res, next) => {
