@@ -13,20 +13,20 @@ loginController.get = (req, res) => {
 };
 loginController.post = (req, res) => {
     //Login User
-    connection.query("UPDATE `users` SET `Logged In` = 1 WHERE `id`= ?", req.user.id, (err, rows) => {
+    connection.query("UPDATE `users` SET `loggedIn` = 1 WHERE `id`= ?", req.user.id, (err, rows) => {
         if(err) throw err;
 
         req.flash('success_msg', 'Successfully Logged In');
         console.log("User Logged In");
     });
-    res.status(200).redirect('/home');
+    res.status(200).redirect('/');
 
 };
 loginController.logout = (req, res) => {
-    connection.query("UPDATE `users` SET `Logged In` = 0 WHERE `id`= ?", req.user.id, (err, rows) => {
+    connection.query("UPDATE `users` SET `loggedIn` = 0 WHERE `id`= ?", req.user.id, (err, rows) => {
         if(err) throw err;
 
-        req.flash('success_msg', 'Successfully Logged In');
+        req.flash('success_msg', 'Successfully Logged Oun');
         console.log("User Logged Out");
     });
     req.logOut();

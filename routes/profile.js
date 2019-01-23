@@ -46,7 +46,9 @@ router.get('/', auth.ensureAuthenticated, profileController.getProfile); //Handl
 
 router.get("/post", postController.getAllPosts);
 
-router.post('/post', auth.ensureAuthenticated, upload.array('photos',10),postController.addPost);
+router.get('/post/add', auth.ensureAuthenticated, postController.getAddPost);
+
+router.post('/post/add', auth.ensureAuthenticated, upload.array('photos',10),postController.addPost);
 
 router.get('/post/:id', postController.getPostById);
 
@@ -54,16 +56,20 @@ router.post('/post/upvote/:postId',auth.ensureAuthenticated,postController.upvot
 
 router.post('/post/comment/:postId', auth.ensureAuthenticated, postController.addComment);
 
-//PUT: Update Story
+router.get('/post/edit', auth.ensureAuthenticated, postController.getEditPost);
+//PUT: Update 
 router.put('/post/edit/:postId', auth.ensureAuthenticated, postController.editPost);
 
-//DELETE: Story
+//DELETE: Delete
 router.delete('/post/:postId', auth.ensureAuthenticated, postController.deletePost);
 
 //Handles Index (Remaining)
 
 
-router.get('/id/:userId', auth.ensureAuthenticated, profileController.getUserProfile); //Handled
+router.get('/id/:userId', profileController.getUserProfile); //Handled
+
+router.put("/id/:userId",auth.ensureAuthenticated, upload.any('avatar'), profileController.editUserProfile); //Handled
+
 
 
 router.post('/upload', auth.ensureAuthenticated, upload.single('avatar'), profileController.uploadProfilePic) //Handled

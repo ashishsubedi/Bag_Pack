@@ -123,14 +123,32 @@ profileController.getUserProfile = (req, res, next) => {
 
 
 };
+profileController.editUserProfile = (req, res, next) => {
+
+    var photoPath = req.files[0].path;
+    console.log(photoPath);
+
+    var query = "UPDATE `users` SET ? WHERE id = ?;";
+    var values = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        address: req.body.address,
+        profilePicture: photoPath,
+        description: req.body.description
+    }
+
+    connection.query(query, [values, req.params.userId], (err, result) => {
+        res.redirect("/profile");
+    });
+};
 
 profileController.uploadProfilePic = (req, res, next) => {
-    var photoPath = req.file.path ;
-    console.log(photoPath);
-    
+    var photoPath = req.file.path;
+
+
     var query = "UPDATE users SET `profilePicture`= ?  WHERE `id`=?;"
-    connection.query(query,[photoPath,req.user.id],(err,rows)=>{
-        if(err) throw err;
+    connection.query(query, [photoPath, req.user.id], (err, rows) => {
+        if (err) throw err;
         res.redirect('/profile');
     })
     /* LocalUser.findById(req.user._id,(err,user)=>{

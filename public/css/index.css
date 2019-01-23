@@ -1,5 +1,43 @@
-html,body{
+body {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 400 !important;
+    border: 0;
+    padding: 0;
     margin: 0;
-    height: 100%;
-    overflow: auto;
+     
+}
+.jumbotron-img {
+  display: flex;
+  align-items: center;
+  background-image: url('img/travel.jpg');
+  color: black;
+  height: 500px;
+  background-size: cover;
+  text-shadow: 0.25px 0.25px 0.25px ;
+    background-repeat: no-repeat;
+    
+}
+
+.carousel-control 			 { width:  4%; }
+.carousel-control.left,.carousel-control.right {margin-left:15px;background-image:none;}
+@media (max-width: 767px) {
+	.carousel-inner .active.left { left: -100%; }
+	.carousel-inner .next        { left:  100%; }
+	.carousel-inner .prev		 { left: -100%; }
+	.active > div { display:none; }
+	.active > div:first-child { display:block; }
+
+}
+@media (min-width: 767px) and (max-width: 992px ) {
+	.carousel-inner .active.left { left: -50%; }
+	.carousel-inner .next        { left:  50%; }
+	.carousel-inner .prev		 { left: -50%; }
+	.active > div { display:none; }
+	.active > div:first-child { display:block; }
+	.active > div:first-child + div { display:block; }
+}
+@media (min-width: 992px ) {
+	.carousel-inner .active.left { left: -25%; }
+	.carousel-inner .next        { left:  25%; }
+	.carousel-inner .prev		 { left: -25%; }	
 }

@@ -45,16 +45,16 @@
                     <% }); %>
                     <% } %>
                 </div>
-                <form class="col" action="/users/register" method="POST">
+                <form action="/users/register" method="POST">
 
                     <h1>Register Here!</h1>
                     <div class="form-group">
-                        <div class="row">
-                            <div class="col">
+                        <div class="form-inline lg">
+                            <div class="form-group">
                                 <input type="text" class="form-control" placeholder="First name" name="firstName" id="firstName"
                                     class="validate" required>
                             </div>
-                            <div class="col">
+                            <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Last name" name="lastName" id="lastName"
                                     class="validate" required>
                             </div>
@@ -82,8 +82,7 @@
                     </div>
                     <div class="form-group">
 
-                        <input class="form-control" id="about" name="about" placeholder="About Yourself! (250 Characters)"
-                            type="text" required />
+                        <textarea class="form-control" rows="3" id="about" name="about" placeholder="About Yourself! (250 Characters)" required></textarea>
                     </div>
 
                     <fieldset class="form-group">

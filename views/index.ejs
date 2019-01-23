@@ -1,0 +1,329 @@
+<html>
+
+<head>
+  <title>BagPack</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--linking bootstrap css-->
+  <link rel="stylesheet" href="/css-boot/bootstrap.min.css">
+  <!--linking bootstrap js-->
+  <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+  <!--Start of NavBar-->
+
+  <nav class="navbar navbar-inverse" style="background-color:#004d40; margin-bottom: 0px; font-size: 20px;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">BagPack</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="#">Explore</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Places <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Historical Visit</a></li>
+              <li><a href="#">Recreational</a></li>
+              <li><a href="#">Adventurous</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Top Guides</a></li>
+          <li><a href="#">Earn With Us</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+          <li><a href="/users/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!--end of nav bar-->
+
+  <!--Start of jumbotron-->
+
+  <section class="jumbotron-img" style="padding: 0px;">
+    <div class="container">
+      <div class="row text-right flex-column" style="padding-right: 10px;">
+        <h2>Travel Nepal</h2>
+        <h3>Make your adventure worthwhile</h3>
+      </div>
+    </div>
+  </section>
+
+  <!--End of jumbotron-->
+
+
+  <!--Start of multi-item Carousel-->
+
+
+  <div class="col-md-12 text-center" style="background-color: #004d40; color: white;">
+    <h3>Places</h3>
+  </div>
+
+
+  <div class="col-md-12" style="margin-top:20px;">
+    <div class="carousel slide" id="myCarousel" data-type="multi" data-interval="300000" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="item active" style="margin-left: 60px;">
+
+
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="img/jumbo_image.PNG"
+                style="border-radius: 50%; width: 300px; height: 300px;"></a>
+            <h2 style="text-align: center;">Kathmandu</h2>
+          </div>
+        </div>
+        <div class="item">
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="img/jumbo_image.PNG"
+                style="border-radius: 50%; width: 300px; height: 300px;"></a>
+            <h2 style="text-align: center;">Pokhara</h2>
+          </div>
+        </div>
+        <div class="item">
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="img/jumbo_image.PNG"
+                style="border-radius: 50%; width: 300px; height: 300px;"></a>
+            <h2 style="text-align: center;">Lalitpur</h2>
+          </div>
+        </div>
+        <div class="item">
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="img/jumbo_image.PNG"
+                style="border-radius: 50%; width: 300px; height: 300px;"></a>
+            <h2 style="text-align: center;">Bhaktapur</h2>
+          </div>
+        </div>
+        <div class="item">
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="img/jumbo_image.PNG"
+                style="border-radius: 50%; width: 300px; height: 300px;"></a>
+            <h2 style="text-align: center;">Sarangkot</h2>
+          </div>
+        </div>
+
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    </div>
+  </div>
+
+  <!--End of multi-item carousel-->
+
+
+
+  <!--Post of the Week-->
+  <div class="col-md-12 text-center" style="background-color: #004d40; color: white; margin-bottom: 10px;">
+    <h3>Post of the Week</h3>
+  </div>
+  <!--Post-->
+
+  <div class="row" style="margin: 10px;">
+
+    <div class="col-md-8 text-center img-center ">
+      <div class="thumbnail">
+
+
+        <!-- Post Content Column -->
+
+
+        <!-- Title -->
+        <h1 class="mt-4">
+          <%= posts[0].title %>
+        </h1>
+
+        <!-- Author -->
+        <p class="lead">
+          by
+          <a href="">
+            <%= posts[0].firstName %>
+            <%= posts[0].lastName %></a>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on
+          <%= moment(posts[0].dateCreated).format('Do MMMM, YYYY');  %>
+        </p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-responsive" src="<%= posts[0].pictures.split(',')[0].substr(6) %>" alt="" style="height:450px; width:900px;">
+        <br>
+
+        <a id="upvote">
+          <div style="color:#3D3C3A; text-align: middle; "><img src="https://img.icons8.com/color/48/000000/good-quality.png" />
+            <%= posts[0].upvotes %> </div> </a>
+
+      <hr>
+
+      <!-- Post Content -->
+      <br>
+
+      <p class="lead">
+        <%= posts[0].content.substr(0,50) %>
+      </p><a href="/profile/post/<%= posts[0].id %>"><button>Read More..</button></a>
+
+    </div>
+  </div>
+
+
+
+
+
+  <div class="col-md-4 sidenav" style=" height:680px;" style="margin-top: 30px; margin-right: 10px;">
+
+    <div class="well " style="background-color: white; ">
+      <h1 style="margin-top: 6px;">LeaderBoard<img src="https://img.icons8.com/color/48/000000/trophy.png"></h1>
+      <hr>
+      <% topUsers.forEach(user=>{ %>
+      <div class="row">
+        <div class="col-md-4">
+          <img src="img/chaukot.jpg" style="width:120px; height:120px; border-radius: 50%;">
+        </div>
+
+        <div class="col-md-8">
+          <h2>
+            <%= user.firstName %>
+            <%= user.lastName %>
+          </h2>
+          <h3>Level:<img src="https://img.icons8.com/color/48/000000/olympic-medal-bronze.png">
+            <%= user.level %>
+          </h3>
+          <h3>Points:<img src="https://img.icons8.com/color/48/000000/gold-pot.png">
+            <%= user.points %>
+          </h3>
+        </div>
+      </div>
+      <hr>
+      <% }); %>
+
+
+    </div>
+  </div>
+  </div>
+
+  <!--End of Post of the Week-->
+
+  <!--Start of Posts-->
+
+
+  <div class="col-md-12 text-center" style="background-color: #004d40; color: white; margin-bottom: 10px;">
+    <h3>Popoular Posts</h3>
+  </div>
+
+  <div class="container">
+
+    <div class="row">
+      <% for(var i=1; i < posts.length; i++) { %>
+      <div class="col-md-4 text-center img-center ">
+
+        <div class="thumbnail">
+
+
+          <!-- Post Content Column -->
+
+
+          <!-- Title -->
+          <h1 class="mt-4">
+            <%= posts[i].title %>
+          </h1>
+          <p class="lead">
+            by
+            <a href="/profile/id/<%= posts[i].userId %>">
+              <%= posts[i].firstName %>
+              <%= posts[i].lastName %> </a>
+          </p>
+
+
+
+          <!-- Preview Image -->
+          <img class="img-responsive" src="<%= posts[i].pictures.split(',')[0].substr(6) %>" alt="" style="height:250px; width:300px;">
+          <br>
+          <a id="upvote">
+              <div style="color:#3D3C3A; text-align: middle; "><img src="https://img.icons8.com/color/48/000000/good-quality.png" />
+                <%= posts[i].upvotes %> </div> </a>
+
+          <hr>
+
+          <!-- Post Content -->
+          <br>
+
+          <p class="lead">
+            <%= posts[i].content.substr(0,20) %>
+          </p><a href="/profile/post/<%= posts[i].id %>"><button>Read</button></a>
+
+        </div>
+      </div>
+      <% } %>
+
+    </div>
+  </div>
+  <div class="page" style="text-align: center;">
+    <ul class="pagination" style="color:black; align: center; font-size: 25px;">
+      <li class="previous"><a href="#">Previous</a></li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li class="next"><a href="#">Next</a></li>
+    </ul>
+  </div>
+
+  </div>
+
+  <!--End of Posts-->
+
+  <footer style="background-color:#004d40; font-size: 15px; color: white; padding:10px;">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 Copyright BagPack
+
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <script src="/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/js-boot/bootstrap.min.js"></script>
+
+
+  <script>
+    $('.carousel[data-type="multi"] .item').each(function () {
+      var next = $(this).next();
+      if (!next.length) {
+        next = $(this).siblings(':first');
+      }
+      next.children(':first-child').clone().appendTo($(this));
+
+      for (var i = 0; i < 2; i++) {
+        next = next.next();
+        if (!next.length) {
+          next = $(this).siblings(':first');
+        }
+
+        next.children(':first-child').clone().appendTo($(this));
+      }
+    });
+  </script>
+  <script>
+  $(function() {
+  $("#upvote").on("click",function(e) {
+    e.preventDefault(); // cancel the link itself
+    $.post(this.href,function(data) {
+      $("#someContainer").html(data);
+    });
+  });
+});
+  </script>
+
+</body>
+
+</html>

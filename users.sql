@@ -30,14 +30,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `First Name` varchar(255) NOT NULL,
-  `Last Name` varchar(255) NOT NULL,
+  `firstName` varchar(255) NOT NULL,
+  `lastName` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL,
-  `Date Created` datetime NOT NULL,
-  `Date of Birth` date NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dob` date NOT NULL,
   `Gender` varchar(10) NOT NULL,
-  `Logged In` int(11) NOT NULL DEFAULT '0',
+  `loggedIn` int(11) NOT NULL DEFAULT '0',
   `isAdmin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -45,7 +45,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `First Name`, `Last Name`, `Email`, `Password`, `Date Created`, `Date of Birth`, `Gender`, `Logged In`, `isAdmin`) VALUES
+INSERT INTO `users` (`id`, `firstName`, `lastName`, `Email`, `Password`, `dateCreated`, `dob`, `Gender`, `loggedIn`, `isAdmin`) VALUES
 (1, 'Ashish', 'Subedi', 'ashishsubedi10@gmail.com', '123456789', '2018-12-08 00:00:00', '0000-00-00', '0', 0, 0),
 (3, 'Neha', 'Malla', 'nehamalla99@gmail.com', 'iamdumbass', '2018-12-08 01:08:12', '0000-00-00', '0', 0, 0),
 (4, 'Rashika', 'Karki', 'rashikakarki9841@gmail.com', 'iamrashika', '2018-12-08 01:08:12', '0000-00-00', '0', 0, 0),
