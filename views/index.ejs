@@ -40,8 +40,23 @@
           <li><a href="#">Earn With Us</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <li><input type="text" style="margin: 10px;" id="search" name="search" placeholder="Search Place" oninput="search();" />
+            <div id="searchResults">
+              <ul id="search-list" style="position: absolute;">
 
+              </ul>
+            </div>
+          </li>
+          <% if(user) { %>
+          <li> <img src="<%= user.profilePicture.substr(6) %>" style="width:50px; height:50px; border-radius: 50%; padding-right: 1px; padding-top: 1px; padding-bottom: 1px;"></li>
+          <li> <a href="/profile" style="margin-top: 3px;">
+              <%= user.firstName %>
+              <%= user.lastName %></a></li>
+          <!--link to their profile-->
+          <li><a href="/users/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+          <% }else{ %>
           <li><a href="/users/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <% } %>
         </ul>
       </div>
     </div>
@@ -72,38 +87,62 @@
 
 
   <div class="col-md-12" style="margin-top:20px;">
-    <div class="carousel slide" id="myCarousel" data-type="multi" data-interval="300000" data-ride="carousel">
+    <div class="carousel slide" id="myCarousel" data-type="multi" data-interval="3000" data-ride="carousel">
       <div class="carousel-inner">
         <div class="item active" style="margin-left: 60px;">
 
 
-          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="img/jumbo_image.PNG"
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
                 style="border-radius: 50%; width: 300px; height: 300px;"></a>
             <h2 style="text-align: center;">Kathmandu</h2>
           </div>
         </div>
         <div class="item">
-          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="img/jumbo_image.PNG"
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
                 style="border-radius: 50%; width: 300px; height: 300px;"></a>
             <h2 style="text-align: center;">Pokhara</h2>
           </div>
         </div>
         <div class="item">
-          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="img/jumbo_image.PNG"
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
                 style="border-radius: 50%; width: 300px; height: 300px;"></a>
             <h2 style="text-align: center;">Lalitpur</h2>
           </div>
         </div>
         <div class="item">
-          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="img/jumbo_image.PNG"
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
                 style="border-radius: 50%; width: 300px; height: 300px;"></a>
             <h2 style="text-align: center;">Bhaktapur</h2>
           </div>
         </div>
         <div class="item">
-          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="img/jumbo_image.PNG"
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
                 style="border-radius: 50%; width: 300px; height: 300px;"></a>
             <h2 style="text-align: center;">Sarangkot</h2>
+          </div>
+        </div>
+        <div class="item">
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
+                style="border-radius: 50%; width: 300px; height: 300px;"></a>
+            <h2 style="text-align: center;">Naranthan</h2>
+          </div>
+        </div>
+        <div class="item">
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
+                style="border-radius: 50%; width: 300px; height: 300px;"></a>
+            <h2 style="text-align: center;">Phulchowki</h2>
+          </div>
+        </div>
+        <div class="item">
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
+                style="border-radius: 50%; width: 300px; height: 300px;"></a>
+            <h2 style="text-align: center;">Kalinchowk</h2>
+          </div>
+        </div>
+        <div class="item">
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
+                style="border-radius: 50%; width: 300px; height: 300px;"></a>
+            <h2 style="text-align: center;">Chandragiri</h2>
           </div>
         </div>
 
@@ -122,6 +161,8 @@
     <h3>Post of the Week</h3>
   </div>
   <!--Post-->
+  <% if ( posts ) {%>
+    <script>console.log("POSTS: ",posts)</script>
 
   <div class="row" style="margin: 10px;">
 
@@ -140,7 +181,7 @@
         <!-- Author -->
         <p class="lead">
           by
-          <a href="">
+          <a href="/profile/id/<%= posts[0].userId %>">
             <%= posts[0].firstName %>
             <%= posts[0].lastName %></a>
         </p>
@@ -158,56 +199,64 @@
         <img class="img-responsive" src="<%= posts[0].pictures.split(',')[0].substr(6) %>" alt="" style="height:450px; width:900px;">
         <br>
 
-        <a id="upvote">
-          <div style="color:#3D3C3A; text-align: middle; "><img src="https://img.icons8.com/color/48/000000/good-quality.png" />
-            <%= posts[0].upvotes %> </div> </a>
-
-      <hr>
-
-      <!-- Post Content -->
-      <br>
-
-      <p class="lead">
-        <%= posts[0].content.substr(0,50) %>
-      </p><a href="/profile/post/<%= posts[0].id %>"><button>Read More..</button></a>
-
-    </div>
-  </div>
 
 
+        <hr>
 
+        <!-- Post Content -->
+        <br>
 
+        <p class="lead">
+          <%= posts[0].content.substr(0,50) %>
+        </p><a href="/profile/post/<%= posts[0].id %>"><button class="btn btn-primary">Read More..</button></a>
 
-  <div class="col-md-4 sidenav" style=" height:680px;" style="margin-top: 30px; margin-right: 10px;">
-
-    <div class="well " style="background-color: white; ">
-      <h1 style="margin-top: 6px;">LeaderBoard<img src="https://img.icons8.com/color/48/000000/trophy.png"></h1>
-      <hr>
-      <% topUsers.forEach(user=>{ %>
-      <div class="row">
-        <div class="col-md-4">
-          <img src="img/chaukot.jpg" style="width:120px; height:120px; border-radius: 50%;">
-        </div>
-
-        <div class="col-md-8">
-          <h2>
-            <%= user.firstName %>
-            <%= user.lastName %>
-          </h2>
-          <h3>Level:<img src="https://img.icons8.com/color/48/000000/olympic-medal-bronze.png">
-            <%= user.level %>
-          </h3>
-          <h3>Points:<img src="https://img.icons8.com/color/48/000000/gold-pot.png">
-            <%= user.points %>
-          </h3>
-        </div>
       </div>
-      <hr>
-      <% }); %>
-
-
     </div>
-  </div>
+    <% }%>
+
+
+
+
+
+    <div class="col-md-4 sidenav" style=" height:680px;" style="margin-top: 30px; margin-right: 10px;">
+      
+      <div class="well " style="background-color: white; ">
+        <% if(topUsers) {%>
+        <h1 style="margin-top: 6px;">LeaderBoard<img src="https://img.icons8.com/color/48/000000/trophy.png"></h1>
+        <hr>
+        <% topUsers.forEach(user=>{ %>
+        <div class="row">
+          <div class="col-md-4">
+            <img src="<%= (user.profilePicture.substr(6) !== '') ?user.profilePicture.substr(6): 'images/pp1.jpg' %>"
+              style="width:120px; height:120px; border-radius: 50%;">
+          </div>
+
+          <div class="col-md-8">
+            <a href="/profile/id/<%= user.id %>">
+              <h2>
+                <%= user.firstName %>
+                <%= user.lastName %>
+              </h2>
+            </a>
+            <h3>Level:<img src="https://img.icons8.com/color/48/000000/olympic-medal-bronze.png">
+              <%= user.level %>
+            </h3>
+            <h3>Points:<img src="https://img.icons8.com/color/48/000000/gold-pot.png">
+              <%= user.points %>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <% }); %>
+        <% } else{%>
+          <h2>
+            No Users Found
+          </h2>
+          <% } %>
+
+
+      </div>
+    </div>
   </div>
 
   <!--End of Post of the Week-->
@@ -220,6 +269,7 @@
   </div>
 
   <div class="container">
+    <% if(posts) { %>
 
     <div class="row">
       <% for(var i=1; i < posts.length; i++) { %>
@@ -247,9 +297,7 @@
           <!-- Preview Image -->
           <img class="img-responsive" src="<%= posts[i].pictures.split(',')[0].substr(6) %>" alt="" style="height:250px; width:300px;">
           <br>
-          <a id="upvote">
-              <div style="color:#3D3C3A; text-align: middle; "><img src="https://img.icons8.com/color/48/000000/good-quality.png" />
-                <%= posts[i].upvotes %> </div> </a>
+
 
           <hr>
 
@@ -258,15 +306,18 @@
 
           <p class="lead">
             <%= posts[i].content.substr(0,20) %>
-          </p><a href="/profile/post/<%= posts[i].id %>"><button>Read</button></a>
+          </p><a href="/profile/post/<%= posts[i].id %>"><button class="btn btn-primary">Read</button></a>
 
         </div>
       </div>
       <% } %>
 
     </div>
+    <% }else{ %>
+    <h3>No posts found</h3>
+    <% } %>
   </div>
-  <div class="page" style="text-align: center;">
+  <!--  <div class="page" style="text-align: center;">
     <ul class="pagination" style="color:black; align: center; font-size: 25px;">
       <li class="previous"><a href="#">Previous</a></li>
       <li><a href="#">1</a></li>
@@ -277,7 +328,7 @@
       <li class="next"><a href="#">Next</a></li>
     </ul>
   </div>
-
+ -->
   </div>
 
   <!--End of Posts-->
@@ -314,14 +365,35 @@
     });
   </script>
   <script>
-  $(function() {
-  $("#upvote").on("click",function(e) {
-    e.preventDefault(); // cancel the link itself
-    $.post(this.href,function(data) {
-      $("#someContainer").html(data);
+    $(function () {
+      $("#upvote").on("click", function (e) {
+        e.preventDefault(); // cancel the link itself
+        $.post(this.href, function (data) {
+          console.log(data);
+        });
+      });
     });
-  });
-});
+  </script>
+  <script>
+    function search() {
+      console.log("CALLED");
+      $.ajax({
+        url: "/search/" + $("#search").val(),
+        success: function (data) {
+          $("#search-list").html = '';
+
+          data.places.forEach(post => {
+            console.log(post.from + "-" + post.to);
+            $("#search-list").append(`
+              <li><a href="profile/post/${post.id}"  <span class="glyphicon glyphicon-hand-right"></span> ${post.from} - ${post.to} </a></li>
+            `)
+            $("#search-list").html = '';
+            //NEED TO BE FIXED
+          })
+
+        }
+      })
+    }
   </script>
 
 </body>

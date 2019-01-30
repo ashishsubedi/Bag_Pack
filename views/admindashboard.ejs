@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Admin Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="/css-boot/bootstrap.min.css" media="screen,projection" />
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Posts</h2>
+        <p>Moderate Posts</p>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>User Id</th>
+                    <th>Post Id</th>
+                    <th>Post Link</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <% if(posts){ var i = 0;%>
+                <% posts.forEach(post=>{ %>
+                <tr id="row-<%= i %>">
+                    <td>
+                        <%= post.firstName %>
+                    </td>
+
+
+                    <td>
+                        <%= post.lastName %>
+                    </td>
+                    <td>
+                        <%= post.userId %>
+                    </td>
+
+                    <td>
+                        <div id="postId">
+
+                            <%= post.id %>
+                        </div>
+                    </td>
+
+
+                    <td><a href="/profile/post/<%= post.id %>">Here</a></td>
+
+
+                    <td>
+                        <%= post.status %>
+                    </td>
+
+
+
+                    <td>
+                        <% if(post.status === 0 ){ %>
+                        <input type="button" value="Approve" class="btn btn-success approve" id="approveBtn-<%= i %>"></form>
+
+                        <input type="button" value="Disapprove" class="btn btn-danger disapprove" id="disapproveBtn-<%= i %>">
+                        <% }else if(post.status === 1){ %>
+                        <input type="button" class="btn btn-danger disapprove" value="Disapprove" id="disapproveBtn-<%= i %>">
+
+                        <input type="button" class="btn btn-primary moderate" value="Send to Moderation" id="moderateBtn-<%= i %>">
+
+                        <% }else if( post.status === 2){ %>
+                        <input type="button" class="btn btn-success approve" value="Approve" id="approveBtn-<%= i %>">
+                        <input type="button" value="Send to Moderation" class="btn btn-primary moderate" id="moderateBtn-<%= i %>">
+
+
+                        <% }; %>
+
+                    </td>
+                </tr>
+                <% i++;}) %>
+                <% } else{ %>
+                    <h2> Nothing to do here. </h2>
+                <% } %>
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <script src="/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/js-boot/bootstrap.min.js"></script>
+
+    <script>
+        /* $("[id|='disapproveBtn']").click(function (e) {
+            console.log("CLICKED");
+            var trIndex = $(this).closest('tr').index();
+            var tr = $(this).closest('tr');
+            var postId = $(this).closest('tr').find("#postId").text().trim();
+            $.post('/admin/disapprove/' + postId, (data) => {
+                console.log(tr);
+
+
+                console.log(data);
+                tr.html(`
+                <td>
+                        ${data.post.firstName}
+                    </td>
+
+
+                    <td>
+                        ${data.post.lastName}
+
+                        
+                    </td>
+                    <td>
+                            ${data.post.userId}
+                    </td>
+
+                    <td>
+                        <div id="postId">
+
+                        ${data.post.id}
+                            
+                        </div>
+                    </td>
+                    <td><a href="/profile/post/${data.post.id}">Here</a></td>
+
+
+                    <td>
+                            ${data.post.status}
+                    
+                    </td>
+
+
+
+                    <td>
+                        <input type="button" class="btn btn-success" value="Approve" id="approveBtn-${trIndex}">
+                        <input type="button" value="Send to Moderation" class="btn btn-primary" id="moderateBtn-${trIndex}">
+                    </td>
+                `);
+
+            });
+        }); */
+        $(".disapprove").click(disapproveClicked);
+        $(".approve").click(approvedClicked);
+
+        function disapproveClicked (e) {
+            console.log("CLICKED");
+            var trIndex = $(this).closest('tr').index();
+            var tr = $(this).closest('tr');
+            var postId = $(this).closest('tr').find("#postId").text().trim();
+            $.post('/admin/disapprove/' + postId, (data) => {
+                console.log(tr);
+
+
+                console.log(data);
+                tr.html(`
+                <td>
+                        ${data.post.firstName}
+                    </td>
+
+
+                    <td>
+                        ${data.post.lastName}
+
+                        
+                    </td>
+                    <td>
+                            ${data.post.userId}
+                    </td>
+
+                    <td>
+                        <div id="postId">
+
+                        ${data.post.id}
+                            
+                        </div>
+                    </td>
+                    <td><a href="/profile/post/${data.post.id}">Here</a></td>
+
+
+                    <td>
+                            ${data.post.status}
+                    
+                    </td>
+
+
+
+                    <td>
+                        <input type="button" class="btn btn-success approve" value="Approve" id="approveBtn-${trIndex}">
+                        <input type="button" value="Send to Moderation" class="btn btn-primary moderate" id="moderateBtn-${trIndex}">
+                    </td>
+                `);
+            });
+        }
+
+
+    </script>
+    <script>
+        /* $("[id|='approveBtn']").click(function (e) {
+            console.log("CLICKED Approved");
+            var trIndex = $(this).closest('tr').index();
+            var tr = $(this).closest('tr');
+            var postId = $(this).closest('tr').find("#postId").text().trim();
+            $.post('/admin/approve/' + postId, (data) => {
+                console.log(data);
+                tr.html(`
+                    <td>
+                        ${data.post.firstName}
+                    </td>
+
+                    <td>
+                        ${data.post.lastName}
+
+                        
+                    </td>
+                    <td>
+                            ${data.post.userId}
+                    </td>
+
+                    <td>
+                        <div id="postId">
+
+                        ${data.post.id}
+                            
+                        </div>
+                    </td>
+                    <td><a href="/profile/post/${data.post.id}">Here</a></td>
+
+
+                    <td>
+                            ${data.post.status}
+                    
+                    </td>
+
+
+
+                    <td>     
+                        <input type="button" class="btn btn-danger" value="Disapprove" id="disapproveBtn-${trIndex}">
+                        <input type="button" value="Send to Moderation" class="btn btn-primary" id="moderateBtn-${trIndex}">
+                    </td>
+                `)
+
+            });
+        }); */
+
+        $(".approve").click(approvedClicked);
+
+        $(".disapprove").click(disapproveClicked);
+
+        function approvedClicked(e) {
+            console.log("CLICKED Approved");
+            var trIndex = $(this).closest('tr').index();
+            var tr = $(this).closest('tr');
+            var postId = $(this).closest('tr').find("#postId").text().trim();
+            $.post('/admin/approve/' + postId, (data) => {
+                console.log(data);
+                tr.html(`
+                    <td>
+                        ${data.post.firstName}
+                    </td>
+
+                    <td>
+                        ${data.post.lastName}
+
+                        
+                    </td>
+                    <td>
+                            ${data.post.userId}
+                    </td>
+
+                    <td>
+                        <div id="postId">
+
+                        ${data.post.id}
+                            
+                        </div>
+                    </td>
+                    <td><a href="/profile/post/${data.post.id}">Here</a></td>
+
+
+                    <td>
+                            ${data.post.status}
+                    
+                    </td>
+
+
+
+                    <td>     
+                        <input type="button" class="btn btn-danger disapprove" value="Disapprove" id="disapproveBtn-${trIndex}">
+                        <input type="button" value="Send to Moderation" class="btn btn-primary moderate" id="moderateBtn-${trIndex}">
+                    </td>
+                `)
+                
+
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <title>BagPack</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--linking bootstrap css-->
+    <link rel="stylesheet" href="/css-boot/bootstrap.min.css">
+    <!--linking bootstrap js-->
+    <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <!--Start of NavBar-->
+
+    <nav class="navbar navbar-inverse" style="background-color:#004d40; margin-bottom: 0px; font-size: 20px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">BagPack</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Explore</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Places <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Historical Visit</a></li>
+                            <li><a href="#">Recreational</a></li>
+                            <li><a href="#">Adventurous</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Top Guides</a></li>
+                    <li><a href="#">Earn With Us</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><input type="text" style="margin: 10px;" id="search" name="search" placeholder="Search Place"
+                            oninput="search();" />
+                        <div id="searchResults">
+                            <ul id="search-list" style="position: absolute;">
+
+                            </ul>
+                        </div>
+                    </li>
+                    <% if(user) { %>
+                    <li> <img src="<%= user.profilePicture.substr(6) %>" style="width:50px; height:50px; border-radius: 50%; padding-right: 1px; padding-top: 1px; padding-bottom: 1px;"></li>
+                    <li> <a href="/profile" style="margin-top: 3px;">
+                            <%= user.firstName %>
+                            <%= user.lastName %></a></li>
+                    <!--link to their profile-->
+                    <li><a href="/users/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                    <% }else{ %>
+                    <li><a href="/users/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--end of nav bar-->
+    <% if (error) { %>
+
+    <h1>
+        <%= error.name %>
+    </h1>
+    <h4 >
+        <%= error.code %> - <%= error.message %>
+    </h4>
+    <% } %>
+
+
+    <footer style="background-color:#004d40; font-size: 15px; color: white; padding:10px;">
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2018 Copyright BagPack
+
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+
+</body>
+
+</html>

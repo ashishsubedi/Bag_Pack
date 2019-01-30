@@ -24,18 +24,20 @@
                 <form class="col" action="/users/login" method="POST">
                     <% if (success_msg) { %>
 
-                        <p >
-                            <%= success_msg %>
-                        </p>
-        
-                        <% } %>
-                        <% if (error_msg) { %>
-        
-                        <p >
-                            <%= error_msg %>
-                        </p>
-        
-                        <% } %>
+                    <p>
+                        <%= success_msg %>
+                    </p>
+
+                    <% } %>
+                    <% if (error_msg) { %>
+
+                    <p>
+                        <%= error_msg %>
+                    </p>
+
+                    <% } %>
+                    <a href="/"> &lt;Back to home </a>
+
                     <h1>Login Here!</h1>
 
 

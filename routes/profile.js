@@ -68,15 +68,11 @@ router.delete('/post/:postId', auth.ensureAuthenticated, postController.deletePo
 
 router.get('/id/:userId', profileController.getUserProfile); //Handled
 
-router.put("/id/:userId",auth.ensureAuthenticated, upload.any('avatar'), profileController.editUserProfile); //Handled
+router.put("/id/:userId",auth.ensureAuthenticated, upload.single('avatar'), profileController.editUserProfile); //Handled
 
 
 
 router.post('/upload', auth.ensureAuthenticated, upload.single('avatar'), profileController.uploadProfilePic) //Handled
 
-router.get('/logout', function (req, res) {
-	req.logout();
-	res.redirect('/');
-});  //Handled
 
 module.exports = router;

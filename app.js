@@ -23,6 +23,7 @@ const con = require('./config/connection');
 const indexRoute = require('./routes/index');
 const userRoute = require('./routes/users');
 const profileRoute = require('./routes/profile');
+const adminRoute = require('./routes/admin');
 
 
 
@@ -49,6 +50,7 @@ app.use(methodOverride('_method'));
 app.use('/css-boot',express.static(__dirname+'/node_modules/bootstrap/dist/css'));
 app.use('/js-boot',express.static(__dirname+'/node_modules/bootstrap/dist/js'));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
+app.use('/fonts/', express.static(path.join(__dirname, '/node_modules/bootstrap/fonts')));
 app.use(express.static(path.join(__dirname,'public')));
 
 
@@ -72,10 +74,15 @@ require('./config/passport')(passport);
 app.use('/',indexRoute);
 app.use('/users',userRoute);
 app.use('/profile',profileRoute);
+app.use('/admin',adminRoute);
 
 
-
-
+app.use(function (err, req, res, next) {
+    console.log("Error: ",err);
+    res.render('error',{
+        error : err,
+    });
+  })
 //listen on port and running the server
 server.listen(port,()=>{
     console.log(`Server running at port ${port}`);

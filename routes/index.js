@@ -9,9 +9,12 @@ const indexController = require('../controller/indexController');
 
 
 
-router.get('/',indexController.get);
+router.get('/',indexController.getHome);
 
-router.get('/home',auth.ensureAuthenticated,indexController.getHome);
+
+router.get('/places/:place',indexController.getPlace);
+
+router.get('/search/:query',indexController.search);
 
 
 module.exports = router;    

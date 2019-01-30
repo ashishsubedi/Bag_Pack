@@ -9,7 +9,7 @@ body {
 .jumbotron-img {
   display: flex;
   align-items: center;
-  background-image: url('img/travel.jpg');
+  background-image: url('../images/travel.jpg');
   color: black;
   height: 500px;
   background-size: cover;

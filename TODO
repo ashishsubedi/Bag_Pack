@@ -1,36 +1,9 @@
+TODO:
 
-Profile
-    Picture,
-    Name,
-    Address,
-    followers,
-    Total post,
-    Points,
+FIX SEARCH RESULT BOX
+ADD ADMIN CONTROLS
 
-
-A Post contains
-    Date,
-    Thumbnail,
-    To,
-    From,
-    Budget,
-    Duration(Time ),
-    Level of difficulty,
-    Best time to travel,
-    Pictures,
-
-
-Post Page:
-    Name, 
-    Pp,
-    Created Date,
-    Post:
-        Previous Values,
-        Pictures,
-        Blog Content,
-        Upvotes,
-    Comments:
-        
-
-
-
+//Post status:
+0: Send for moderation
+1: approved
+2: Not approved

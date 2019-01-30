@@ -39,11 +39,12 @@ registerController.post = (req, res, next) => {
     } else {
 
         var datetime = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-        var dob = moment(req.body.birth,"MM-DD-YYYY").format("YYYY-MM-DD");
+        var dob = moment(req.body.birth, "MM-DD-YYYY").format("YYYY-MM-DD");
         let password = bcrypt.generateHash(req.body.password);
         con.query("SELECT * FROM `users` WHERE `Email` = ?", req.body.email, function (err, rows) {
-            if (err)
-                throw err;
+            // if (err)throw err;
+            if (err) return next(err);
+
 
             if (rows.length) {
 
@@ -54,9 +55,11 @@ registerController.post = (req, res, next) => {
                 //errors.push("User already exists!");
             } else {
                 con.query("INSERT INTO `users` (`firstName`, `lastName`, `Email`, `Password`, `dateCreated`,`dob`, `Gender`, `loggedIn`,`isAdmin`,`address`,`description`) VALUES (?, ?, ?, ?, ?,?,?, '0','0',?,?)",
-                    [req.body.firstName, req.body.lastName, req.body.email, password, datetime, dob, req.body.gender,req.body.address,req.body.description], (err, rows, fields) => {
+                    [req.body.firstName, req.body.lastName, req.body.email, password, datetime, dob, req.body.gender, req.body.address, req.body.description], (err, rows, fields) => {
 
-                        if (err) throw err;
+                        // if (err) throw err;
+                        if (err) return next(err);
+
 
                         //TODO: Redirect to Login Page
                         req.flash('success_message', 'User successfully Registered.');

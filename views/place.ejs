@@ -1,0 +1,130 @@
+<html>
+
+<head>
+    <title>Places</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--linking bootstrap css-->
+    <link rel="stylesheet" href="/css-boot/bootstrap.min.css">
+
+    <!--linking bootstrap js-->
+    <!--linking bootstrap js-->
+    <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script src="/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/js-boot/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/bagpackProfile.css">
+</head>
+
+<body>
+    <!--Start of NavBar-->
+    <nav class="navbar navbar-inverse" style="background-color:#004d40; margin-bottom: 0px; font-size: 20px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">BagPack</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Explore</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Places <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--re write these-->
+                            <li><a href="#">Historical Visit</a></li>
+                            <li><a href="#">Recreational</a></li>
+                            <li><a href="#">Adventurous</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Top Guides</a></li>
+                    <li><a href="#">Earn With Us</a></li>
+                    <!--add search-->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <% if(user) { %>
+                    <li> <img src="<%= user.profilePicture.substr(6) %>" style="width:50px; height:50px; border-radius: 50%; padding-right: 1px; padding-top: 1px; padding-bottom: 1px;"></li>
+                    <li> <a href="/profile" style="margin-top: 3px;">
+                            <%= user.firstName %>
+                            <%= user.lastName %></a></li>
+                    <!--link to their profile-->
+                    <li><a href="/users/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                    <% }else{ %>
+                    <li><a href="/users/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--End of NavBar-->
+
+    <!--post-->
+    <div class="container">
+        <div class="col-md-12 text-center" style="background-color: #004d40; color: white; width: 100%;">
+            <h3><%= place %></h3>
+        </div>
+        <div class="row">
+            <% posts.reverse() %>
+            <% for(var i=0; i < posts.length; i++) { %>
+            <div class="col-md-4 text-center img-center ">
+
+                <div class="thumbnail">
+
+
+                    <!-- Post Content Column -->
+
+
+                    <!-- Title -->
+                    <h1 class="mt-4">
+                        <%= posts[i].title %>
+                    </h1>
+                    <p class="lead">
+                        by
+                        <a href="/profile/id/<%= posts[i].userId %>">
+                            <%= posts[i].firstName %>
+                            <%= posts[i].lastName %> </a>
+                    </p>
+
+
+
+                    <!-- Preview Image -->
+                    <img class="img-responsive" src="<%= posts[i].pictures.split(',')[0].substr(6) %>" alt="" style="height:250px; width:300px;">
+                    <br>
+
+
+                    <hr>
+
+                    <!-- Post Content -->
+                    <br>
+
+                    <p class="lead">
+                        <%= posts[i].content.substr(0,20) %>
+                    </p><a href="/profile/post/<%= posts[i].id %>"><button class="btn btn-primary">Read</button></a>
+
+                </div>
+            </div>
+            <% } %>
+
+
+        </div>
+    </div>
+
+    </div>
+
+    <br>
+    <br>
+
+    <footer style="background-color:#004d40; font-size: 15px; color: darkgrey; padding:10px;">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2018 Copyright BagPack</div>
+
+    </footer>
+
+</body>
+
+
+</html>

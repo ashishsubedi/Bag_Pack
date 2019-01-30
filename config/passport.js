@@ -10,15 +10,16 @@ module.exports = function (passport) {
     // used to serialize the user for the session
 
     passport.serializeUser(function (user, done) {
-        
+
         done(null, user.id);
     });
     // used to deserialize the user
     passport.deserializeUser(function (id, done) {
 
         connection.query("SELECT * FROM users WHERE id = ?", id, (err, rows) => {
-           
-            done(err, rows[0]);
+            if (err) done(err);
+            else
+                done(err, rows[0]);
         });
     });
 
@@ -36,19 +37,19 @@ module.exports = function (passport) {
                 }
 
                 if (!rows.length) {
-                    return done(null, false,req.flash('error_msg',  'No user found.'));
+                    return done(null, false, req.flash('error_msg', 'No user found.'));
 
                 }
 
                 // if the user is found but the password is wrong
                 if (!(bcrypt.validPassword(password, rows[0].Password)))
-                    return done(null, false,req.flash('error_msg', 'Wrong password.')); // create the loginMessage and save it to session as flashdata
+                    return done(null, false, req.flash('error_msg', 'Wrong password.')); // create the loginMessage and save it to session as flashdata
 
 
                 // all is well, return successful user
-               /*  connection.query("UPDATE `users` SET `Logged In` = 1 WHERE `Email`= ?", email, (err, rows) => {
-                    console.log("User Logged in");
-                }); */
+                /*  connection.query("UPDATE `users` SET `Logged In` = 1 WHERE `Email`= ?", email, (err, rows) => {
+                     console.log("User Logged in");
+                 }); */
                 return done(null, rows[0]);
 
             });
