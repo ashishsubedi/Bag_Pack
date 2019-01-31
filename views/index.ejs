@@ -162,7 +162,7 @@
   </div>
   <!--Post-->
   <% if ( posts ) {%>
-    <script>console.log("POSTS: ",posts)</script>
+  <script>console.log("POSTS: ", posts)</script>
 
   <div class="row" style="margin: 10px;">
 
@@ -219,7 +219,7 @@
 
 
     <div class="col-md-4 sidenav" style=" height:680px;" style="margin-top: 30px; margin-right: 10px;">
-      
+
       <div class="well " style="background-color: white; ">
         <% if(topUsers) {%>
         <h1 style="margin-top: 6px;">LeaderBoard<img src="https://img.icons8.com/color/48/000000/trophy.png"></h1>
@@ -249,10 +249,10 @@
         <hr>
         <% }); %>
         <% } else{%>
-          <h2>
-            No Users Found
-          </h2>
-          <% } %>
+        <h2>
+          No Users Found
+        </h2>
+        <% } %>
 
 
       </div>
@@ -380,14 +380,17 @@
       $.ajax({
         url: "/search/" + $("#search").val(),
         success: function (data) {
-          $("#search-list").html = '';
+          $("#search-list").html('');
 
-          data.places.forEach(post => {
-            console.log(post.from + "-" + post.to);
-            $("#search-list").append(`
-              <li><a href="profile/post/${post.id}"  <span class="glyphicon glyphicon-hand-right"></span> ${post.from} - ${post.to} </a></li>
+          data.places.forEach(postData => {
+            console.log(postData.from + "-" + postData.to);
+            $("#search-list").html(`
+            <div class="panel panel-default">
+              
+              <li><a href="profile/post/${postData.id}"  <span class="glyphicon glyphicon-hand-right"></span> ${postData.from} - ${postData.to} </a></li>
+              
+            </div>
             `)
-            $("#search-list").html = '';
             //NEED TO BE FIXED
           })
 

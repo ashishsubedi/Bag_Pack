@@ -15,7 +15,7 @@ profileController.getProfile = (req, res, next) => {
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
 
-        connection.query("SELECT * FROM `post` WHERE `userId` = ? AND `status` = 1", [req.user.id], (err, rows) => {
+        connection.query("SELECT * FROM `post` WHERE `userId` = ?", [req.user.id], (err, rows) => {
             // if (err) throw err;
             if (err) return next(err);
 

@@ -281,9 +281,9 @@ postController.getPostById = (req, res, next) => {
 
 
         query =
-            "select post.*, users.`firstName`, users.`lastName`, users.`profilePicture`  from post inner join users on post.userId=users.id AND post.userId = ? order by post.dateCreated desc;";
+            "select post.*, users.`firstName`, users.`lastName`, users.`profilePicture`  from post inner join users on post.userId=users.id AND post.id = ? order by post.dateCreated desc;";
 
-        connection.query(query, [result[0].userId], (err, rows) => {
+        connection.query(query, [result[0].id], (err, rows) => {
 
             if (err) return next(err);
 

@@ -43,6 +43,7 @@ indexController.getPlace = (req, res, next) => {
         "Select post.*, users.`firstName`, users.`lastName`, users.`profilePicture`  from post inner join users on post.userId=users.id AND (post.to = ? OR post.from = ?) AND post.`status` = 1 order by post.dateCreated desc;", [req.params.place, req.params.place], (err, rows) => {
             // if(err) next(err);
             if (err) return next(err);
+            
             if (rows.length === 0) {
                 var error = new Error("Place not Found!!!");
                 error.status = 404;
