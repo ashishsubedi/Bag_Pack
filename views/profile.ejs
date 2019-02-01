@@ -324,36 +324,23 @@
                     <!-- Post Content -->
                     <br>
 
-                    <p class="lead text-center">
-                        <ul>
-                            <li>
-                                <h5>
-                                    Route:
-                                    <%= post.from %> -
-                                    <%= post.to %>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5>Budget: Rs
-                                    <%= post.budget %>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5>Time duration:
-                                    <%= post.duration %> hrs</h5>
-                    </p>
-                    <li>
-                        <h5>Est time to travel:
-                            <%= post.bestTime %>
-                        </h5>
-                    </li>
-                    <li>
-                        <h5>Level of difficulty:
-                            <%= post.levelOfDifficulty %>
-                        </h5>
-                    </li>
-                    </ul>
-                    </p>
+                    <b>
+                            <p>Route:
+                              <%= post.from %> -
+                              <%= post.to %>
+                            </p>
+                            <p>Total Budget(Rs):
+                              <%= post.budget %>/-</p>
+                            <p>Time duration:
+                              <%= post.duration %>
+                            </p>
+                            <p>Best time to travel:
+                              <%= post.bestTime %>
+                            </p>
+                            <p>Level of difficulty:
+                              <%= post.levelOfDifficulty %>
+                            </p>
+                          </b>
                 </div>
 
 

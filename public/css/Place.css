@@ -1,0 +1,58 @@
+body {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 400 !important;
+    border: 0;
+    padding: 0;
+    margin: 0;
+     
+}
+
+/*
+.jumbotron-img {
+  display: flex;
+  align-items:flex-end;
+text-align: left;
+  background-image: url('img/post.PNG');
+  color: black;
+  height: 500px;
+  background-size: cover;
+  text-shadow: 0.25px 0.25px 0.25px ;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    
+}*/
+
+section {
+    position: relative;
+    background-color: transparent !important;
+    height: 450px;
+    padding: 0px;
+    margin-bottom: 0px;
+    border-bottom: 0px;
+    
+}
+.jumbotron{
+    padding-bottom: 0px;
+    
+}
+section .img {
+    position: absolute;
+    left:0; top:0;
+    background-size: cover;
+    min-height: 450px;
+    width: 100%;
+    opacity: 2.56;
+    background-image: url("public/images/kathmandu.jpg");
+    z-index: -1;
+}
+
+section .container {
+    background-color: transparent;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    border: 0px;
+}
+
+section .container .row {
+    padding: 0px;
+}

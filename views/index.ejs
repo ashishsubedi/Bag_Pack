@@ -87,60 +87,48 @@
 
 
   <div class="col-md-12" style="margin-top:20px;">
-    <div class="carousel slide" id="myCarousel" data-type="multi" data-interval="3000" data-ride="carousel">
+    <div class="carousel slide" id="myCarousel" data-type="multi" data-interval="10000" data-ride="carousel">
       <div class="carousel-inner">
         <div class="item active" style="margin-left: 60px;">
 
 
-          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="/places/kathmandu"><img class="img-responsive" src="images/jumbo_image.PNG"
                 style="border-radius: 50%; width: 300px; height: 300px;"></a>
             <h2 style="text-align: center;">Kathmandu</h2>
           </div>
         </div>
         <div class="item">
-          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="/places/Pokhara"><img class="img-responsive" src="images/jumbo_image.PNG"
                 style="border-radius: 50%; width: 300px; height: 300px;"></a>
             <h2 style="text-align: center;">Pokhara</h2>
           </div>
         </div>
         <div class="item">
-          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="/places/lalitpur"><img class="img-responsive" src="images/jumbo_image.PNG"
                 style="border-radius: 50%; width: 300px; height: 300px;"></a>
             <h2 style="text-align: center;">Lalitpur</h2>
           </div>
         </div>
         <div class="item">
-          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="/places/bhaktapur"><img class="img-responsive" src="images/jumbo_image.PNG"
                 style="border-radius: 50%; width: 300px; height: 300px;"></a>
             <h2 style="text-align: center;">Bhaktapur</h2>
           </div>
         </div>
         <div class="item">
-          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
-                style="border-radius: 50%; width: 300px; height: 300px;"></a>
-            <h2 style="text-align: center;">Sarangkot</h2>
-          </div>
-        </div>
-        <div class="item">
-          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
-                style="border-radius: 50%; width: 300px; height: 300px;"></a>
-            <h2 style="text-align: center;">Naranthan</h2>
-          </div>
-        </div>
-        <div class="item">
-          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="/places/phulchowki"><img class="img-responsive" src="images/jumbo_image.PNG"
                 style="border-radius: 50%; width: 300px; height: 300px;"></a>
             <h2 style="text-align: center;">Phulchowki</h2>
           </div>
         </div>
         <div class="item">
-          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="/places/kalinchowk"><img class="img-responsive" src="images/jumbo_image.PNG"
                 style="border-radius: 50%; width: 300px; height: 300px;"></a>
             <h2 style="text-align: center;">Kalinchowk</h2>
           </div>
         </div>
         <div class="item">
-          <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="images/jumbo_image.PNG"
+          <div class="col-md-3 col-sm-6 col-xs-12"><a href="/places/chandragiri"><img class="img-responsive" src="images/jumbo_image.PNG"
                 style="border-radius: 50%; width: 300px; height: 300px;"></a>
             <h2 style="text-align: center;">Chandragiri</h2>
           </div>
@@ -175,7 +163,8 @@
 
         <!-- Title -->
         <h1 class="mt-4">
-          <%= posts[0].title %>
+          <a href="/profile/post/<%= posts[0].id %>">
+            <%= posts[0].title %></a>
         </h1>
 
         <!-- Author -->
@@ -206,8 +195,25 @@
         <!-- Post Content -->
         <br>
 
+        <b>
+          <p>Route:
+            <%= posts[0].from %> -
+            <%= posts[0].to %>
+          </p>
+          <p>Total Budget(Rs):
+            <%= posts[0].budget %>/-</p>
+          <p>Time duration:
+            <%= posts[0].duration %>
+          </p>
+          <p>Best time to travel:
+            <%= posts[0].bestTime %>
+          </p>
+          <p>Level of difficulty:
+            <%= posts[0].levelOfDifficulty %>
+          </p>
+        </b>
         <p class="lead">
-          <%= posts[0].content.substr(0,50) %>
+          <%- posts[0].content.substr(0,50) %>
         </p><a href="/profile/post/<%= posts[0].id %>"><button class="btn btn-primary">Read More..</button></a>
 
       </div>
@@ -283,7 +289,9 @@
 
           <!-- Title -->
           <h1 class="mt-4">
-            <%= posts[i].title %>
+            <a href="/profile/post/<%= posts[i].id %>">
+              <%= posts[i].title %>
+            </a>
           </h1>
           <p class="lead">
             by
@@ -305,7 +313,23 @@
           <br>
 
           <p class="lead">
-            <%= posts[i].content.substr(0,20) %>
+            <b>
+              <p>Route:
+                <%= posts[i].from %> -
+                <%= posts[i].to %>
+              </p>
+              <p>Total Budget(Rs):
+                <%= posts[i].budget %>/-</p>
+              <p>Time duration:
+                <%= posts[i].duration %>
+              </p>
+              <p>Best time to travel:
+                <%= posts[i].bestTime %>
+              </p>
+              <p>Level of difficulty:
+                <%= posts[i].levelOfDifficulty %>
+              </p>
+            </b>
           </p><a href="/profile/post/<%= posts[i].id %>"><button class="btn btn-primary">Read</button></a>
 
         </div>

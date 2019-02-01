@@ -76,8 +76,8 @@
                     <div hidden id="postId">
                         <%= post.id %>
                     </div>
-                    <%= post.from %> -
-                    <%= post.to %>
+                    <%= post.title %>
+                
                     <% if (user) { %>
 
                     <% if(user.id === post.userId || user.isAdmin === 1){ %>
@@ -176,7 +176,7 @@
                     </p>
                 </b>
                 <p>
-                    <%= post.content %>
+                    <%- post.content %>
                 </p>
 
                 <hr>

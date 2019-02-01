@@ -15,6 +15,8 @@
     <script type="text/javascript" src="/js-boot/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="css/bagpackProfile.css">
+    <link rel="stylesheet" href="css/Place.css">
+
 </head>
 
 <body>
@@ -61,12 +63,85 @@
         </div>
     </nav>
     <!--End of NavBar-->
+    <section class="jumbotron">
+        <div class="img"></div>
+
+        <div class="container" style="margin-top: 250px;">
+            <div class="row">
+                <h1 class="display-3">Kathmandu</h1>
+                <p class="lead">Favourable time to visit:April-November</p>
+
+            </div>
+        </div>
+    </section>
+    <a name="pane1"></a>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist" style="margin: 0px; background-color: #004d40">
+        <li class="nav-item">
+            <a href="#pane1" style="color:black;">
+
+                <h3>About</h3>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#pane2" style="color:black;">
+                <h3>Post</h3>
+            </a>
+
+        </li>
+    </ul>
+
+    <!-- Tab panels -->
+
+    <div style="font-size: 20px;">
+
+        <p>
+            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
+            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
+            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
+            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
+            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
+            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
+            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
+            This is dummy text about Kathmandu.
+        </p>
+        <p>
+            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
+            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
+            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
+            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
+            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
+            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
+            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
+            This is dummy text about Kathmandu.
+        </p>
+        <p><b>Best Time to Visit:</b>April to november</p>
+
+        <p><b>
+                List of do's:
+            </b>
+        </p>
+        <ul>
+            <li>Do this</li>
+            <li>Do this</li>
+            <li>Do this</li>
+            <li>Do this</li>
+            <li>Do this</li>
+        </ul>
+
+    </div>
 
     <!--post-->
+    <div style="font-size: 20px;">
+        <a name="pane2"></a>
+        
+    <div class="col-md-12 text-center" style="background-color: #004d40; color: white; width: 100%;">
+        <h3>
+            <%= place %>
+        </h3>
+    </div>
     <div class="container">
-        <div class="col-md-12 text-center" style="background-color: #004d40; color: white; width: 100%;">
-            <h3><%= place %></h3>
-        </div>
+        
         <div class="row">
             <% posts.reverse() %>
             <% for(var i=0; i < posts.length; i++) { %>
@@ -114,9 +189,8 @@
     </div>
 
     </div>
+</div>
 
-    <br>
-    <br>
 
     <footer style="background-color:#004d40; font-size: 15px; color: darkgrey; padding:10px;">
         <!-- Copyright -->
