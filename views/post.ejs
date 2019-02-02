@@ -286,12 +286,12 @@
     <script>
         $("#upvote").on("click", function (e) {
             var postId = $("#postId").text();
-
             e.preventDefault(); // cancel the link itself
             $.ajax({
                 url: "/profile/post/upvote/" + postId,
                 method: "post",
                 success: function (upvotes) {
+                    console.log(upvotes);
                     if (upvotes.message == "Upvoted") {
                         $("#upvoteCount").text(parseInt($("#upvoteCount").text().trim()) + 1);
                     }

@@ -4,10 +4,10 @@ const keys = require('./keys');
 
 
 const con = mysql.createConnection({
-    host: process.env.MySqlHost || keys.remotesql.host,
-    user: process.env.MySqlUsername || keys.remotesql.username,
-    password: process.env.MySqlPassword || keys.remotesql.password,
-    database: process.env.MySqlDatabaseName || keys.remotesql.database
+    host: process.env.MySqlHost || keys.local.host,
+    user: process.env.MySqlUsername || keys.local.username,
+    password: process.env.MySqlPassword || keys.local.password,
+    database: process.env.MySqlDatabaseName || keys.local.database
 });
 
 

@@ -1,9 +1,9 @@
 const port = process.env.PORT||3000;
-const http = require('http');
+//Importing/Including required module 
 //const host = "localhost";
 
-//Importing/Including required module 
 
+const http = require('http');
 const express = require('express');
 const path = require('path');
 const helmet = require('helmet');

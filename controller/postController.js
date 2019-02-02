@@ -100,20 +100,20 @@ postController.addPost = (req, res, next) => {
                         } else {
                             rows[0].upvotes = 0;
                         }
-
-                        res.status(200).render('post', {
-                            post: rows[0],
-                            pictures,
-                            user: req.user,
-                            moment: moment,
-                            comments: comments
-                        })
-
-                    })
-                })
+                        connection.query("UPDATE users SET points = (points + 5) WHERE id = ?;", [req.user.id], (err, doneInsert) => {
+                            res.status(200).render('post', {
+                                post: rows[0],
+                                pictures,
+                                user: req.user,
+                                moment: moment,
+                                comments: comments
+                            });
+                        });
+                    });
+                });
                 // console.log("Pictures: ",picturesPath);
                 //res.status(200).json(rows[0]);
-            })
+            });
 
 
         });
@@ -273,7 +273,7 @@ postController.getPostById = (req, res, next) => {
     connection.query(query, [req.params.id], (err, result, fields) => {
         // if (err) throw err;
         if (err) return next(err);
-        if(result.length === 0){
+        if (result.length === 0) {
             var error = new Error("Posts not Found!!!");
             error.status = 404;
             return next(err);
@@ -388,10 +388,12 @@ postController.addComment = (req, res, next) => {
         connection.query(query, req.params.postId, (err, rows) => {
             // if (err) next(err);
             if (err) return next(err);
+            connection.query("UPDATE users SET points = (points + 1) WHERE id = ?;", [req.user.id], (err, doneInsert) => {
+                //TODO: GET USER DATA AND DISPLAY POST PAGEc
+                res.status(200).json({ comments: rows, moment });
+            });
 
 
-            //TODO: GET USER DATA AND DISPLAY POST PAGEc
-            res.status(200).json({ comments: rows, moment });
 
 
         })
