@@ -1,0 +1,186 @@
+<html>
+
+<head>
+    <title>Edit Post</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--linking bootstrap css-->
+    <link rel="stylesheet" href="/css-boot/bootstrap.min.css">
+
+    <!--linking bootstrap js-->
+    <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script src="/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/js-boot/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/bagpackProfile.css">
+</head>
+
+<body>
+    <!--Start of NavBar-->
+    <nav class="navbar navbar-inverse" style="background-color:#004d40; margin-bottom: 0px; font-size: 20px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">BagPack</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Explore</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Places <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--re write these-->
+                            <li><a href="#">Historical Visit</a></li>
+                            <li><a href="#">Recreational</a></li>
+                            <li><a href="#">Adventurous</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Top Guides</a></li>
+                    <li><a href="#">Earn With Us</a></li>
+                    <!--add search-->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <% if(user) { %>
+                    <li> <img src="<%= user.profilePicture.substr(6) %>" style="width:50px; height:50px; border-radius: 50%; padding-right: 1px; padding-top: 1px; padding-bottom: 1px;"></li>
+                    <li> <a href="/profile" style="margin-top: 3px;">
+                            <%= user.firstName %>
+                            <%= user.lastName %></a></li>
+                    <!--link to their profile-->
+                    <li><a href="/users/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                    <% }else{ %>
+                    <li><a href="/users/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--End of NavBar-->
+
+    <!--post-->
+    <div class="container">
+
+        <div class="row">
+            <% if (post) {%>
+
+            <!-- Post Content Column -->
+            <div class="col-lg-12">
+
+                <form id="editPostForm">
+                    <div class="form-group">
+                        <label for="editTitle">Title</label>
+                        <input type="text" class="form-control" id="editTitle" name="editTitle" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <input id="photos" type="file" class="file" name="photos" data-show-preview="true" multiple
+                            required>
+                        <ul>
+                            <!--Display Carosul here-->
+                            <div>
+                                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                    <!-- Indicators -->
+                                    <ol class="carousel-indicators">
+                                        <% var k = 0; %>
+                                        <% pictures.forEach(function(photo){ %>
+                                        <li data-target="#myCarousel" data-slide-to="<%= k %>" class="<%= (k == 0) ? "
+                                            active" : "" %>"></li>
+                                        <% k++; %>
+                                        <% }); %>
+                                    </ol>
+
+                                    <!-- Wrapper for slides -->
+                                    <div class="carousel-inner">
+                                        <% var i = 0; %>
+                                        <% pictures.forEach(function(photo){ %>
+                                        <div class="item<%= (i == 0) ? " active" : "" %>">
+                                            <img src="/<%= photo.substr(7) %>" alt="nepal" style="width:100%; height: 100%;">
+                                        </div>
+                                        <% i++; %>
+                                        <% }); %>
+                                    </div>
+
+                                    <!-- Left and right controls -->
+                                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editRouteFrom">Route From</label>
+                            <input type="text" class="form-control" id="editRouteFrom" name="editRouteFrom" value="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="editRouteTo">Route To</label>
+                            <input type="password" class="form-control" id="editRouteTo" placeholder="editRouteTo"
+                                value="">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editBudget">Budget</label>
+                            <input type="text" class="form-control" id="editBudget" name="editBudget" value="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="editDuration">Duration</label>
+                            <input type="password" class="form-control" id="editDuration" placeholder="editDuration"
+                                value="">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editBestTime">Best Time To Travel</label>
+                            <input type="text" class="form-control" id="editBestTime" name="editBestTime" value="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="editLevelOfDifficulty">Level Of Difficulty</label>
+                            <input type="password" class="form-control" id="editLevelOfDifficulty" placeholder="editLevelOfDifficulty"
+                                value="">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editContent">Your Travel Experience</label>
+                        <textarea class="form-control" rows="6" id="editContent" name="editContent"></textarea>
+                    </div>
+
+                    <button type="submit" id="editBtn" class="btn btn-success" value="Submit">Save</button>
+                </form>
+
+
+            </div>
+            <% } %>
+
+        </div>
+
+    </div>
+
+    <br>
+    <br>
+
+    <footer style="background-color:#004d40; font-size: 15px; color: darkgrey; padding:10px;">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2018 Copyright BagPack</div>
+
+    </footer>
+
+</body>
+
+
+</html>
