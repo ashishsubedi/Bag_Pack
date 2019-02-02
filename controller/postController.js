@@ -128,15 +128,25 @@ postController.addPost = (req, res, next) => {
 };
 
 postController.getEditPost = (req, res, next) => {
-    query = "SELECT * FROM `post` WHERE id = ? ";
-    connection.query(query, req.params.postId, (err, row) => {
+    query = "SELECT * FROM post WHERE id = ?;";
+    connection.query(query, req.params.postId, (err, rows) => {
+        console.log("ROWS", rows);
         if (err) return next(err);
+        var photosPath = rows[0].pictures;
 
+        var temp = photosPath.split(',');
+        var pictures = [];
+        for (var i = 0; i < temp.length - 1; i++) {
+            pictures.push(temp[i]);
+        }
 
-
-        res.render("editPost", {
+        console.log(pictures);
+        res.render("edit", {
             post: rows[0],
-            moment
+            moment,
+            pictures,
+            user: req.user,
+            photosPath
         });
     });
 };
@@ -146,10 +156,17 @@ postController.getAddPost = (req, res, next) => {
 
 postController.editPost = (req, res, next) => {
     var photosPath = '';
-    _.forEach(req.files, (val) => {
-        photosPath += val.path + ',';
-    });
-    console.log(req.params.postId);
+    console.log("Pictures", req.files);
+
+    if (req.files.length !== 0) {
+
+        _.forEach(req.files, (val) => {
+            photosPath += val.path + ',';
+        });
+    } else {
+        photosPath = req.body.pictures;
+    }
+    console.log(photosPath);
 
     var query = "UPDATE `post` SET ? WHERE id = ?";
     var values = {
@@ -163,16 +180,13 @@ postController.editPost = (req, res, next) => {
         levelOfDifficulty: req.body.levelOfDifficulty,
         title: req.body.title
     }
-    console.log(values);
     connection.query(query, [values, req.params.postId], (err, result, fields) => {
         // if (err) throw err;
         if (err) return next(err);
 
 
-
         console.log("POST EDITED SUCCESSFULLY!!");
         query = "SELECT * from post Where id = ? AND `status` = 1;";
-        console.log(req.params.postId);
         connection.query(query, [req.params.postId], (err, row) => {
             // if (err) throw err;
             if (err) return next(err);
@@ -180,7 +194,6 @@ postController.editPost = (req, res, next) => {
 
 
             //TODO: GET USER DATA AND DISPLAY POST PAGE
-            console.log(row);
             if (row.length > 0) {
 
 
@@ -190,53 +203,47 @@ postController.editPost = (req, res, next) => {
                 connection.query(query, [row[0].userId], (err, rows) => {
                     // if (err) throw err;
                     if (err) return next(err);
+                    console.log("ROWS 0", rows[0]);
+                    var picturesPath = rows[0].pictures.split(',');
+                    var pictures = []
+                    for (var i = 0; i < picturesPath.length - 1; i++) {
+                        pictures.push(picturesPath[i]);
+                    }
+
+                    connection.query("SELECT comment.*, users.firstName, users.lastName, users.profilePicture FROM comment INNER JOIN users ON users.id=comment.userId AND comment.postId=? ORDER BY id DESC", [rows[0].id], (err, comments) => {
+                        // if (err) throw err;
+                        if (err) return next(err);
 
 
-                    console.log(rows[0]);
-                    res.status(200).json({
-                        post: rows[0],
-                        moment
-                    });
-                })
-            } else {
-                res.status(200).json({
-                    post: undefined,
-                    message: "No post found",
-                    moment
+
+                        connection.query("SELECT COUNT(*) as num FROM upvotes WHERE postId=? GROUP BY postId", [rows[0].id], (err, rows3) => {
+                            // if (err) throw err;
+                            if (err) return next(err);
+
+
+
+                            if (rows3.length > 0 && rows3[0].num) {
+                                rows[0].upvotes = rows3[0].num;
+                            } else {
+                                rows[0].upvotes = 0;
+                            }
+
+                            res.status(200).render('post', {
+                                post: rows[0],
+                                pictures,
+                                user: req.user,
+                                moment: moment,
+                                comments: comments
+
+                            });
+                        });
+
+                    })
+
                 });
-            }
-
-
-        })
-
+            };
+        });
     });
-    /*  Story.findOne({
-         _id: req.params.id
-     })
-         .then(story => {
-             let allowComments;
- 
-             if (req.body.allowComments) {
-                 allowComments = true;
-             } else {
-                 allowComments = false;
-             }
- 
- 
-             story.title = req.body.title;
-             story.body = req.body.body;
-             story.status = req.body.status;
-             story.allowComments = allowComments;
- 
- 
-             story.save()
-                 .then(story => {
-                     res.redirect('/dashboard');
-                 });
- 
- 
-         })
-         .catch(err => { throw err }); */
 };
 
 postController.deletePost = (req, res, next) => {

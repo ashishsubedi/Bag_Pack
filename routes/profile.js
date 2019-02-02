@@ -56,9 +56,9 @@ router.post('/post/upvote/:postId',auth.ensureAuthenticated,postController.upvot
 
 router.post('/post/comment/:postId', auth.ensureAuthenticated, postController.addComment);
 
-router.get('/post/edit', auth.ensureAuthenticated, postController.getEditPost);
+router.get('/post/edit/:postId', auth.ensureAuthenticated, postController.getEditPost);
 //PUT: Update 
-router.put('/post/edit/:postId', auth.ensureAuthenticated, postController.editPost);
+router.put('/post/edit/:postId', auth.ensureAuthenticated, upload.array('photos',10), postController.editPost);
 
 //DELETE: Delete
 router.delete('/post/:postId', auth.ensureAuthenticated, postController.deletePost);

@@ -76,11 +76,11 @@
                         <%= post.id %>
                     </div>
                     <%= post.title %>
-                
+
                     <% if (user) { %>
 
                     <% if(user.id === post.userId || user.isAdmin === 1){ %>
-                    <form action="/profile/post/edit" method="GET">
+                    <form action="/profile/post/edit/<%= post.id %>" method="GET">
                         <input type="submit" value="Edit" class="btn btn-primary">
                     </form>
                     <form action="/profile/post/<%= post.id %>?_method=DELETE" method="POST">
