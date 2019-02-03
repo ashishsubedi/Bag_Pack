@@ -186,63 +186,48 @@ postController.editPost = (req, res, next) => {
 
 
         console.log("POST EDITED SUCCESSFULLY!!");
-        query = "SELECT * from post Where id = ? AND `status` = 1;";
-        connection.query(query, [req.params.postId], (err, row) => {
+
+
+
+
+        query =
+            "select post.*, users.`firstName`, users.`lastName`, users.`profilePicture` from post inner join users on post.userId=users.id AND post.userId = ? order by post.dateCreated desc;";
+
+        connection.query(query, [req.user.id], (err, rows) => {
             // if (err) throw err;
             if (err) return next(err);
+            console.log("ROWS 0", rows[0]);
+            var picturesPath = rows[0].pictures.split(',');
+            var pictures = []
+            for (var i = 0; i < picturesPath.length - 1; i++) {
+                pictures.push(picturesPath[i]);
+            }
+
+            connection.query("SELECT comment.*, users.firstName, users.lastName, users.profilePicture FROM comment INNER JOIN users ON users.id=comment.userId AND comment.postId=? ORDER BY id DESC", [rows[0].id], (err, comments) => {
+                // if (err) throw err;
+                if (err) return next(err);
 
 
 
-            //TODO: GET USER DATA AND DISPLAY POST PAGE
-            if (row.length > 0) {
-
-
-                query =
-                    "select post.*, users.`firstName`, users.`lastName`, users.`profilePicture` from post inner join users on post.userId=users.id AND post.userId = ? order by post.dateCreated desc;";
-
-                connection.query(query, [row[0].userId], (err, rows) => {
+                connection.query("SELECT COUNT(*) as num FROM upvotes WHERE postId=? GROUP BY postId", [rows[0].id], (err, rows3) => {
                     // if (err) throw err;
                     if (err) return next(err);
-                    console.log("ROWS 0", rows[0]);
-                    var picturesPath = rows[0].pictures.split(',');
-                    var pictures = []
-                    for (var i = 0; i < picturesPath.length - 1; i++) {
-                        pictures.push(picturesPath[i]);
+
+
+
+                    if (rows3.length > 0 && rows3[0].num) {
+                        rows[0].upvotes = rows3[0].num;
+                    } else {
+                        rows[0].upvotes = 0;
                     }
 
-                    connection.query("SELECT comment.*, users.firstName, users.lastName, users.profilePicture FROM comment INNER JOIN users ON users.id=comment.userId AND comment.postId=? ORDER BY id DESC", [rows[0].id], (err, comments) => {
-                        // if (err) throw err;
-                        if (err) return next(err);
-
-
-
-                        connection.query("SELECT COUNT(*) as num FROM upvotes WHERE postId=? GROUP BY postId", [rows[0].id], (err, rows3) => {
-                            // if (err) throw err;
-                            if (err) return next(err);
-
-
-
-                            if (rows3.length > 0 && rows3[0].num) {
-                                rows[0].upvotes = rows3[0].num;
-                            } else {
-                                rows[0].upvotes = 0;
-                            }
-
-                            res.status(200).render('post', {
-                                post: rows[0],
-                                pictures,
-                                user: req.user,
-                                moment: moment,
-                                comments: comments
-
-                            });
-                        });
-
-                    })
-
+                    res.redirect('/profile/post/'+req.params.postId);
                 });
-            };
+
+            })
+
         });
+
     });
 };
 

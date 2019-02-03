@@ -33,7 +33,7 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Explore</a></li>
+                    
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Places <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -43,8 +43,7 @@
                             <li><a href="#">Adventurous</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Top Guides</a></li>
-                    <li><a href="#">Earn With Us</a></li>
+                    
                     <!--add search-->
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -64,7 +63,7 @@
     </nav>
     <!--End of NavBar-->
     <section class="jumbotron">
-        <div class="img"></div>
+        <div class="img" ></div>
 
         <div class="container" style="margin-top: 250px;">
             <div class="row">
@@ -96,24 +95,10 @@
     <div style="font-size: 20px;">
 
         <p>
-            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
-            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
-            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
-            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
-            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
-            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
-            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
-            This is dummy text about Kathmandu.
+            For many, stepping off a plane into Kathmandu is a pupil-dilating experience, a riot of sights, sounds and smells that can quickly lead to sensory overload. Whether you’re barrelling through the traffic-jammed alleyways of the old town in a rickshaw, marvelling at the medieval temples or dodging trekking touts in the backpacker district of Thamel, Kathmandu can be an intoxicating, amazing and exhausting place.
         </p>
         <p>
-            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
-            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
-            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
-            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
-            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
-            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
-            This is dummy text about Kathmandu. This is dummy text about Kathmandu. This is dummy text about Kathmandu.
-            This is dummy text about Kathmandu.
+            For many, stepping off a plane into Kathmandu is a pupil-dilating experience, a riot of sights, sounds and smells that can quickly lead to sensory overload. Whether you’re barrelling through the traffic-jammed alleyways of the old town in a rickshaw, marvelling at the medieval temples or dodging trekking touts in the backpacker district of Thamel, Kathmandu can be an intoxicating, amazing and exhausting place.
         </p>
         <p><b>Best Time to Visit:</b>April to november</p>
 
@@ -122,11 +107,11 @@
             </b>
         </p>
         <ul>
-            <li>Do this</li>
-            <li>Do this</li>
-            <li>Do this</li>
-            <li>Do this</li>
-            <li>Do this</li>
+            <li>Visit Durbar Square</li>
+            <li>Visit Pashupatinath</li>
+            <li>Eat lhaphing at Swayambhunath</li>
+            <li>Eat newari food at Patan area</li>
+            <li>Eat local momos</li>
         </ul>
 
     </div>
@@ -177,7 +162,7 @@
                     <br>
 
                     <p class="lead">
-                        <%= posts[i].content.substr(0,20) %>
+                        <%- posts[i].content.substr(0,20) %>
                     </p><a href="/profile/post/<%= posts[i].id %>"><button class="btn btn-primary">Read</button></a>
 
                 </div>
